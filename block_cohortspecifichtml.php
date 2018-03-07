@@ -39,10 +39,28 @@ class block_cohortspecifichtml extends block_base {
     }
 
     public function specialization() {
+        global $CFG;
+        require_once($CFG->dirroot . '/blocks/cohortspecifichtml/locallib.php');
+
+        // If a block title is set.
         if (isset($this->config->title)) {
-            $this->title = $this->title = format_string($this->config->title, true, ['context' => $this->context]);
+            // Show this title to all users that should see the block or who are allowed to edit the block and are in editing mode.
+            if (block_cohortspecifichtml_show_block($this) ||
+                    block_cohortspecifichtml_get_caneditandediton($this)) {
+                $this->title = $this->title = format_string($this->config->title, true, ['context' => $this->context]);
+            } else {
+                // Do not show a title.
+                $this->title = '';
+            }
         } else {
-            $this->title = get_string('newhtmlcohortblock', 'block_cohortspecifichtml');
+            if (block_cohortspecifichtml_show_block($this) ||
+                block_cohortspecifichtml_get_caneditandediton($this)) {
+                // Show the default title.
+                $this->title = get_string('newhtmlcohortblock', 'block_cohortspecifichtml');
+            } else {
+                // Do not show a title.
+                $this->title = '';
+            }
         }
     }
 
@@ -51,7 +69,7 @@ class block_cohortspecifichtml extends block_base {
     }
 
     public function get_content() {
-        global $CFG, $USER;
+        global $CFG;
 
         require_once($CFG->libdir . '/filelib.php');
         require_once($CFG->dirroot . '/cohort/lib.php');
@@ -72,100 +90,24 @@ class block_cohortspecifichtml extends block_base {
         $this->content->footer = '';
 
         if (isset($this->config->text)) {
-            // Initialise variable to decide if the block should be shown or not.
-            $showblock = false;
 
-            // Initialise variable to check if a user should see the block independently from cohort memberships.
-            $viewalways = has_capability('block/cohortspecifichtml:viewalways', context_block::instance($this->instance->id));
-
-            // Initialise variable for the configured cohorts.
-            if (isset($this->config->cohorts)) {
-                $configedcohorts = $this->config->cohorts;
-            }
-
-            // Initialise variable to check if the block content will be shown to a user and don't show the block initially.
-            // If the checkbox invertcohortselection is existing.
-            if (!empty($this->config->invertcohortselection)) {
-                $invertselection = $this->config->invertcohortselection;
-            } else {
-                $invertselection = 0;
-            }
-
-            // Show the block to users that have the capability to see the block independent from a
-            // corresponding cohort membership.
-            if ($viewalways == true) {
-                $showblock = true;
-            } else {
-                // Get the existent cohorts.
-                $allcohorts = block_cohortspecifichtml_get_all_cohorts();
-                // Cohorts exist in the system.
-                if (!empty($allcohorts)) {
-                    // Get the selected cohorts, if any.
-                    // No cohort is selected.
-                    if (empty($configedcohorts)) {
-                        // If checkbox to invert the "selection" is enabled, then show the content to all users.
-                        if ($invertselection == 1) {
-                            $showblock = true;
-                        }
-                    } else { // At least one cohort is selected.
-                        if ($invertselection != 1) {
-                            if (block_cohortspecifichtml_cohorts_is_member($USER->id, $configedcohorts)) {
-                                $showblock = true;
-                            }
-                        } else {
-                            if (!block_cohortspecifichtml_cohorts_is_member($USER->id, $configedcohorts)) {
-                                $showblock = true;
-                            }
-                        }
-                    }
-                }
-            }
             // Show the block to the users that should see the block.
-            if ($showblock == true) {
-                // Initialise info string.
-                $info = '';
+            if (block_cohortspecifichtml_show_block($this) == true ||
+                block_cohortspecifichtml_get_caneditandediton($this) == true) {
 
                 // Rewrite url.
                 $this->config->text = file_rewrite_pluginfile_urls($this->config->text, 'pluginfile.php', $this->context->id,
                     'block_cohortspecifichtml', 'content', null);
-                // Default to FORMAT_HTML which is what will have been used before the editor was properly implemented for the block.
+                // Default to FORMAT_HTML which is what will have been used before the editor was properly
+                // implemented for the block.
                 $format = FORMAT_HTML;
                 // Check to see if the format has been properly set on the config.
                 if (isset($this->config->format)) {
                     $format = $this->config->format;
                 }
-                // Users with the capability should see a hint that the visibility is restricted to defined cohort members.
-                if ($viewalways == true) {
-                    if (!empty($configedcohorts)) {
-                        if ($invertselection != 1) {
-                            $info .= html_writer::tag('span', get_string('restricted', 'moodle'),
-                                array('class' => 'label label-info'));
-                            $info .= html_writer::tag('span', get_string('visibletocohorts',
-                                'block_cohortspecifichtml'), array('class' => 'small'));
-                        } else {
-                            $info .= html_writer::tag('span', get_string('restricted', 'moodle'),
-                                array('class' => 'label label-info'));
-                            $info .= html_writer::tag('span', get_string('notvisibletocohorts',
-                                'block_cohortspecifichtml'), array('class' => 'small'));
-                        }
-                        $cohorts = block_cohortspecifichtml_get_cohort_names($configedcohorts);
-                        // Only show the list with restricted cohorts if at least one cohort is selected.
-                        $info .= html_writer::alist($cohorts, array('class' => 'small'));
-                        $info .= html_writer::tag('hr', null);
-                    } else {
-                        if ($invertselection != 1) {
-                            $info .= html_writer::tag('span', get_string('restricted', 'moodle'),
-                                array('class' => 'label label-info'));
-                            $info .= html_writer::tag('span', get_string('notvisibletoall',
-                                'block_cohortspecifichtml'), array('class' => 'small'));
-                        } else {
-                            $info .= html_writer::tag('span', get_string('unrestricted',
-                                'block_cohortspecifichtml'), array('class' => 'label label-info'));
-                            $info .= html_writer::tag('span', get_string('visibletoall',
-                                'block_cohortspecifichtml'), array('class' => 'small'));
-                        }
-                    }
-                }
+
+                $info = block_cohortspecifichtml_get_restrictioninfo($this);
+
                 $this->content->text = format_text($info . $this->config->text, $format, $filteropt);
             }
         } else { // No text is entered, set an empty string.
