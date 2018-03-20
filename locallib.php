@@ -68,10 +68,13 @@ function block_cohortspecifichtml_cohorts_is_member($userid, $cohorts) {
     global $DB;
 
     if (!empty($cohorts)) {
-        $cohorts = "(" . implode(", ", $cohorts) . ")";
-        $select = "userid = " . $userid . " AND cohortid IN " . $cohorts;
-        return $DB->record_exists_select('cohort_members', $select);
-    } else {
-        return false;
-    }
+        // Create IN statement for cohorts.
+        list($in, $params) = $DB->get_in_or_equal($cohorts);
+        // Add param for userid
+        $params[] = $userid;
+        // Return true if "userid = " . $userid . " AND cohortid IN " . $cohorts;
+        return $DB->record_exists_select('cohort_members', "cohortid $in AND userid = ?", $params);
+   } else {
+       return false;
+   }
 }
