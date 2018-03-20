@@ -4,6 +4,7 @@ Feature: HTML (on cohorts) blocks in a course
   As a teacher
   I need to be able to create and change such blocks
 
+  @javascript
   Scenario: Adding HTML (on cohorts) block in a course
     Given the following "users" exist:
       | username | firstname | lastname | email                |

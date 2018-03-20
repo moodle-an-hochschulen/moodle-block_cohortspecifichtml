@@ -74,9 +74,9 @@ class block_cohortspecifichtml_edit_form extends block_edit_form {
                 $mform->addHelpButton('config_resetcohortselection', 'resetcohortselection', 'block_cohortspecifichtml');
             }
         } else {
-            // Add a static element with a hint there there are no cohorts existing.
+            // Add a static element with a hint that there are no cohorts existing.
             $mform->addElement('static', 'nocohorts', get_string('cohorts', 'core_cohort'),
-                    get_string('nocohorts', 'block_cohortspecifichtml'));
+                    get_string('nocohorts', 'block_cohortspecifichtml', array('url' => $CFG->wwwroot.'/cohort/index.php')));
         }
 
         if (!empty($CFG->block_cohortspecifichtml_allowcssclasses)) {

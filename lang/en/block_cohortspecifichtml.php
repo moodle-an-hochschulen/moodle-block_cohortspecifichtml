@@ -26,8 +26,8 @@
 $string['pluginname'] = 'HTML (on cohorts)';
 
 // Capabilities.
-$string['cohortspecifichtml:addinstance'] = 'Add a new HTML block';
-$string['cohortspecifichtml:myaddinstance'] = 'Add a new HTML block to Dashboard';
+$string['cohortspecifichtml:addinstance'] = 'Add a new HTML (on cohorts) block';
+$string['cohortspecifichtml:myaddinstance'] = 'Add a new HTML (on cohorts) block to Dashboard';
 $string['cohortspecifichtml:viewalways'] = 'Always view the block';
 
 // Settings.
@@ -35,9 +35,9 @@ $string['newhtmlcohortblock'] = 'new HTML (on cohorts)';
 $string['cohortselection'] = 'Show to cohorts';
 $string['cohortselection_help'] = 'The block will be only shown to the members of at least one selected cohort. This means that if you selected, for example, two cohorts and a user is only member of one of them, the block will be displayed to him as he is part of at least one selected cohort. This is equivalent to an OR connection.';
 $string['nocohorts'] = 'No cohorts are defined yet. Without any cohorts <strong>the block will not be visible</strong> to anybody, even if you have entered content above. <br/>
-Cohorts can be managed <a href="/cohort/index.php">here</a>.';
+Cohorts can be managed in the <a href="{$a->url}">site administration</a>.';
 $string['invertcohortselection'] = 'Invert the selection (hide it for the selected cohorts)';
-$string['invertcohortselection_help'] = 'With this setting you can invert your selection. This means that the block will not be shown to members of the selected cohort but to everyone else.
+$string['invertcohortselection_help'] = 'With this setting you can invert your selection. This means that the block will not be shown to members of the selected cohort but to everyone else.<br/>
 Examples: <ul> <li>If a user matches at least one of the selected cohorts the block will not be displayed to him, even if he is also member of a cohort that is not selected.</li>
 <li>If you have selected none of the cohorts and invert that, the block will be visible for <strong>all</strong> users.</li></ul>';
 $string['resetcohortselection'] = 'Reset selection';

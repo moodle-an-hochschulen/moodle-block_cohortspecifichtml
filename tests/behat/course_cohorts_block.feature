@@ -33,6 +33,7 @@ Feature: HTML (on cohorts) blocks in a course with several cohort restrictions
       | student3 | 34     |
       | student4 | 34     |
 
+  @javascript
   Scenario: Adding HTML (on cohorts) block in a course and restrict visibility to cohort "1-2"
     When I log in as "teacher1"
     And I am on "Course 1" course homepage with editing mode on
@@ -51,6 +52,7 @@ Feature: HTML (on cohorts) blocks in a course with several cohort restrictions
     And I am on "Course 1" course homepage
     And I should not see "Cohort 1-2 header"
 
+  @javascript
   Scenario: Adding HTML (on cohorts) block in a course and restrict visibility to cohort "3-4"
     When I log in as "teacher1"
     And I am on "Course 1" course homepage with editing mode on
@@ -69,6 +71,7 @@ Feature: HTML (on cohorts) blocks in a course with several cohort restrictions
     And I am on "Course 1" course homepage
     And I should not see "Cohort 3-4 header"
 
+  @javascript
   Scenario: Adding HTML (on cohorts) block in a course and restrict visibility to multiple cohorts
     When I log in as "teacher1"
     And I am on "Course 1" course homepage with editing mode on
@@ -87,6 +90,7 @@ Feature: HTML (on cohorts) blocks in a course with several cohort restrictions
     And I am on "Course 1" course homepage
     And I should see "Cohort 1-4 content" in the "Cohort 1-4 header" "block"
 
+  @javascript
   Scenario: Adding HTML (on cohorts) block in a course, select no cohorts and invert the selection
     When I log in as "teacher1"
     And I am on "Course 1" course homepage with editing mode on
@@ -105,6 +109,7 @@ Feature: HTML (on cohorts) blocks in a course with several cohort restrictions
     And I am on "Course 1" course homepage
     And I should see "Cohort (none) inverted content" in the "Cohort (none) inverted header" "block"
 
+  @javascript
   Scenario: Adding HTML (on cohorts) block in a course, select cohort "1-2" and invert the selection
     When I log in as "teacher1"
     And I am on "Course 1" course homepage with editing mode on
@@ -124,6 +129,7 @@ Feature: HTML (on cohorts) blocks in a course with several cohort restrictions
     And I am on "Course 1" course homepage
     And I should see "Cohort 1-2 inverted content" in the "Cohort 1-2 inverted header" "block"
 
+  @javascript
   Scenario: Adding HTML (on cohorts) block in a course, select cohorts "1-2" and "3-4" and invert the selection
     When I log in as "teacher1"
     And I am on "Course 1" course homepage with editing mode on
@@ -143,6 +149,7 @@ Feature: HTML (on cohorts) blocks in a course with several cohort restrictions
     And I am on "Course 1" course homepage
     And I should not see "Cohort 1-4 inverted header"
 
+  @javascript
   Scenario: Adding HTML (on cohorts) block in a course with capability block/cohortspecifichtml:viewalways and select cohort "1-2"
     When I log in as "admin"
     And I set the following system permissions of "Teacher" role:
@@ -160,6 +167,7 @@ Feature: HTML (on cohorts) blocks in a course with several cohort restrictions
     And I should see "Restricted" in the "Cohort 1-2 header" "block"
     And I should see "Only visible to cohorts:" in the "Cohort 1-2 header" "block"
 
+  @javascript
   Scenario: Adding HTML (on cohorts) block in a course with capability block/cohortspecifichtml:viewalways and select cohort "1-2" and invert this
     When I log in as "admin"
     And I set the following system permissions of "Teacher" role:
@@ -178,6 +186,7 @@ Feature: HTML (on cohorts) blocks in a course with several cohort restrictions
     And I should see "Restricted" in the "Cohort 1-2 inverted header" "block"
     And I should see "Not visible to cohorts:" in the "Cohort 1-2 inverted header" "block"
 
+  @javascript
   Scenario: Adding HTML (on cohorts) block in a course with capability block/cohortspecifichtml:viewalways and select no cohort and invert this
     When I log in as "admin"
     And I set the following system permissions of "Teacher" role:
@@ -195,6 +204,7 @@ Feature: HTML (on cohorts) blocks in a course with several cohort restrictions
     And I should see "Unrestricted" in the "No cohort inverted header" "block"
     And I should see "This block is visible to all users." in the "No cohort inverted header" "block"
 
+  @javascript
   Scenario: Adding HTML (on cohorts) block in a course with capability block/cohortspecifichtml:viewalways and select no cohort and save this
     When I log in as "admin"
     And I set the following system permissions of "Teacher" role:
