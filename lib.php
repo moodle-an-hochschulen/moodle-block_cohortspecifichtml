@@ -41,6 +41,7 @@ defined('MOODLE_INTERNAL') || die();
 function block_cohortspecifichtml_pluginfile($course, $birecordorcm, $context, $filearea, $args,
         $forcedownload, array $options=array()) {
     global $DB, $CFG, $USER;
+    require_once($CFG->dirroot . '/blocks/cohortspecifichtml/locallib.php');
 
     if ($context->contextlevel != CONTEXT_BLOCK) {
         send_file_not_found();
@@ -78,6 +79,13 @@ function block_cohortspecifichtml_pluginfile($course, $birecordorcm, $context, $
 
     if (!$file = $fs->get_file($context->id, 'block_cohortspecifichtml', 'content',
                     0, $filepath, $filename) or $file->is_directory()) {
+        send_file_not_found();
+    }
+
+    // Check the same cohort conditions for the file. If not valid, do send_file_not_found.
+    $instance = block_instance($birecordorcm->blockname, $birecordorcm);
+    if (block_cohortspecifichtml_show_block($instance) != true &&
+            block_cohortspecifichtml_get_caneditandediton($instance) != true) {
         send_file_not_found();
     }
 
