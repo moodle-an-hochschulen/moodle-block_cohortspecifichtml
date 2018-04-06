@@ -27,6 +27,6 @@ defined('MOODLE_INTERNAL') || die();
 $plugin->component = 'block_cohortspecifichtml';
 $plugin->version = 2018032900;
 $plugin->release = 'v3.2-r4';
-$plugin->requires = 2016120500;
+$plugin->requires = 2017051500;
 $plugin->maturity = MATURITY_STABLE;
-$plugin->dependencies = array('block_html' => 2016120500);
+$plugin->dependencies = array('block_html' => 2017051500);
