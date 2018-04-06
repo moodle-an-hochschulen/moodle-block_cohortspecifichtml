@@ -4,7 +4,7 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
-### Unreleased
+### Release v3.3-r1
 
 * 2018-04-06 Prepare compatibility for Moodle 3.3, no functionality change.
 
