@@ -17,7 +17,7 @@
 /**
  * HTML (on cohorts) - Capabilities
  *
- * @package   block_cohortspecifichtml.php
+ * @package   block_cohortspecifichtml
  * @copyright 2017 Kathrin Osswald, Ulm University kathrin.osswald@uni-ulm.de
  *            based on code from Mark Nelson <markn@moodle.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
