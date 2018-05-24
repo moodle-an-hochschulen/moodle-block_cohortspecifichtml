@@ -50,3 +50,6 @@ $string['notvisibletoall'] = '<br/>This block is <strong>not visible</strong> to
 $string['unrestricted'] = 'Unrestricted';
 $string['visibletocohorts'] = '<br/><strong>Only</strong> visible to cohorts:';
 $string['visibletoall'] = '<br/>This block is <strong>visible</strong> to <strong>all</strong> users.';
+
+// Privacy.
+$string['privacy:metadata:block'] = 'The HTML (on cohorts) block stores all of its data within the block subsystem.';
