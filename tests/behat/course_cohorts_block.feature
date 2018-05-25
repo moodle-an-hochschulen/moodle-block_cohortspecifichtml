@@ -1,4 +1,4 @@
-@block @block_cohortspecifichtml
+@block @block_cohortspecifichtml @cohort_restrictions
 Feature: HTML (on cohorts) blocks in a course with several cohort restrictions
   In order to have one or multiple HTML (on cohorts) blocks in a course
   As a teacher
@@ -13,9 +13,10 @@ Feature: HTML (on cohorts) blocks in a course with several cohort restrictions
       | student3 | Sam3      | Student3 | student3@example.com |
       | student4 | Sam4      | Student4 | student4@example.com |
     And the following "cohorts" exist:
-      | name | idnumber |
-      | 1-2  | 12       |
-      | 3-4  | 34       |
+      | name    | idnumber |
+      | 1-2     | 12       |
+      | 3-4     | 34       |
+      | teacher | 5        |
     And the following "courses" exist:
       | fullname | shortname |
       | Course 1 | C1        |
@@ -27,11 +28,12 @@ Feature: HTML (on cohorts) blocks in a course with several cohort restrictions
       | student3 | C1     | student        |
       | student4 | C1     | student        |
     And the following "cohort members" exist:
-      | user     | cohort |
-      | student1 | 12     |
-      | student2 | 12     |
-      | student3 | 34     |
-      | student4 | 34     |
+      | user     | cohort   |
+      | student1 | 12       |
+      | student2 | 12       |
+      | student3 | 34       |
+      | student4 | 34       |
+      | teacher1 | 5        |
 
   @javascript
   Scenario: Adding HTML (on cohorts) block in a course and restrict visibility to cohort "1-2"
@@ -220,3 +222,43 @@ Feature: HTML (on cohorts) blocks in a course with several cohort restrictions
     And I press "Save changes"
     And I should see "Restricted" in the "No cohort header" "block"
     And I should see "This block is not visible to any user." in the "No cohort header" "block"
+
+  @javascript
+  Scenario: Adding HTML (on cohorts) block in a course without capability block/cohortspecifichtml:viewalways, select a cohort I'm not a member in and save this
+    When I log in as "admin"
+    And I set the following system permissions of "Teacher" role:
+      | capability                          | permission |
+      | block/cohortspecifichtml:viewalways | Prevent    |
+    And I log out
+    And I log in as "teacher1"
+    And I am on "Course 1" course homepage with editing mode on
+    And I add the "HTML (on cohorts)" block
+    And I configure the "new HTML (on cohorts)" block
+    And I set the field "Content" to "Cohort 1-2 content"
+    And I set the field "HTML block title" to "Cohort 1-2 header"
+    And I set the field "id_config_cohorts" to "1-2"
+    And I press "Save changes"
+    Then I should see "Restricted" in the "Cohort 1-2 header" "block"
+    And I should see "Cohort 1-2 content" in the "Cohort 1-2 header" "block"
+    And I turn editing mode off
+    Then I should not see "Cohort 1-2 header"
+
+  @javascript
+  Scenario: Adding HTML (on cohorts) block in a course without capability block/cohortspecifichtml:viewalways, select a cohort I'm a member in and save this
+    When I log in as "admin"
+    And I set the following system permissions of "Teacher" role:
+      | capability                          | permission |
+      | block/cohortspecifichtml:viewalways | Prevent    |
+    And I log out
+    And I log in as "teacher1"
+    And I am on "Course 1" course homepage with editing mode on
+    And I add the "HTML (on cohorts)" block
+    And I configure the "new HTML (on cohorts)" block
+    And I set the field "Content" to "Cohort Teacher content"
+    And I set the field "HTML block title" to "Cohort Teacher header"
+    And I set the field "id_config_cohorts" to "teacher"
+    And I press "Save changes"
+    Then I should see "Restricted" in the "Cohort Teacher header" "block"
+    And I should see "Cohort Teacher content" in the "Cohort Teacher header" "block"
+    And I turn editing mode off
+    Then I should see "Cohort Teacher content" in the "Cohort Teacher header" "block"

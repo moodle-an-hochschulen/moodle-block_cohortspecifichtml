@@ -1,4 +1,4 @@
-@block @block_cohortspecifichtml @core_block
+@block @block_cohortspecifichtml @configure
 Feature: Adding and configuring HTML (on cohorts) blocks
   In order to have custom blocks on a page
   As admin
@@ -39,7 +39,7 @@ Feature: Adding and configuring HTML (on cohorts) blocks
     And I press "Save changes"
     And "block_cohortspecifichtml" "block" should exist
     And "The HTML block header" "block" should exist
-    And I should see "Static text with a header" in the "The HTML block header" "block"
+    Then I should see "Static text with a header" in the "The HTML block header" "block"
 
   Scenario: Configuring the HTML (on cohorts) block with Javascript off
     When I log in as "admin"
@@ -56,4 +56,4 @@ Feature: Adding and configuring HTML (on cohorts) blocks
     And I press "Save changes"
     And "block_cohortspecifichtml" "block" should exist
     And "The HTML block header" "block" should exist
-    And I should see "Static text with a header" in the "The HTML block header" "block"
+    Then I should see "Static text with a header" in the "The HTML block header" "block"

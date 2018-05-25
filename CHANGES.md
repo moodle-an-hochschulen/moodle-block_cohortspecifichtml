@@ -6,6 +6,7 @@ Changes
 
 ### Unreleased
 
+* 2018-05-25 Improved Behat tests slighty and added new scenarios.
 * 2018-05-25 Changed Behat tests due to changes in the parent block_html.
 * 2018-05-25 Check compatibility for Moodle 3.5, no functionality change.
 
