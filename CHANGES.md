@@ -4,7 +4,7 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
-### Unreleased
+### Release v3.4-r2
 
 * 2018-05-16 Implement Privacy API.
 * 2018-04-11 Updated README.md.
