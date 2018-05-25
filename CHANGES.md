@@ -4,6 +4,10 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
+### Unreleased
+
+* 2018-05-25 Check compatibility for Moodle 3.5, no functionality change.
+
 ### Release v3.4-r2
 
 * 2018-05-16 Implement Privacy API.
