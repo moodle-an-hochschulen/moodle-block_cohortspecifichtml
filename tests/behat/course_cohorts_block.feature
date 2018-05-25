@@ -40,7 +40,7 @@ Feature: HTML (on cohorts) blocks in a course with several cohort restrictions
     And I add the "HTML (on cohorts)" block
     And I configure the "new HTML (on cohorts)" block
     And I set the field "Content" to "Cohort 1-2 content"
-    And I set the field "Block title" to "Cohort 1-2 header"
+    And I set the field "HTML block title" to "Cohort 1-2 header"
     And I set the field "id_config_cohorts" to "1-2"
     And I press "Save changes"
     And I log out
@@ -59,7 +59,7 @@ Feature: HTML (on cohorts) blocks in a course with several cohort restrictions
     And I add the "HTML (on cohorts)" block
     And I configure the "new HTML (on cohorts)" block
     And I set the field "Content" to "Cohort 3-4 content"
-    And I set the field "Block title" to "Cohort 3-4 header"
+    And I set the field "HTML block title" to "Cohort 3-4 header"
     And I set the field "id_config_cohorts" to "3-4"
     And I press "Save changes"
     And I log out
@@ -78,7 +78,7 @@ Feature: HTML (on cohorts) blocks in a course with several cohort restrictions
     And I add the "HTML (on cohorts)" block
     And I configure the "new HTML (on cohorts)" block
     And I set the field "Content" to "Cohort 1-4 content"
-    And I set the field "Block title" to "Cohort 1-4 header"
+    And I set the field "HTML block title" to "Cohort 1-4 header"
     And I set the field "id_config_cohorts" to "1-2, 3-4"
     And I press "Save changes"
     And I log out
@@ -97,7 +97,7 @@ Feature: HTML (on cohorts) blocks in a course with several cohort restrictions
     And I add the "HTML (on cohorts)" block
     And I configure the "new HTML (on cohorts)" block
     And I set the field "Content" to "Cohort (none) inverted content"
-    And I set the field "Block title" to "Cohort (none) inverted header"
+    And I set the field "HTML block title" to "Cohort (none) inverted header"
     And I set the field "config_invertcohortselection" to "1"
     And I press "Save changes"
     And I log out
@@ -116,7 +116,7 @@ Feature: HTML (on cohorts) blocks in a course with several cohort restrictions
     And I add the "HTML (on cohorts)" block
     And I configure the "new HTML (on cohorts)" block
     And I set the field "Content" to "Cohort 1-2 inverted content"
-    And I set the field "Block title" to "Cohort 1-2 inverted header"
+    And I set the field "HTML block title" to "Cohort 1-2 inverted header"
     And I set the field "id_config_cohorts" to "1-2"
     And I set the field "config_invertcohortselection" to "1"
     And I press "Save changes"
@@ -136,7 +136,7 @@ Feature: HTML (on cohorts) blocks in a course with several cohort restrictions
     And I add the "HTML (on cohorts)" block
     And I configure the "new HTML (on cohorts)" block
     And I set the field "Content" to "Cohort 1-4 inverted content"
-    And I set the field "Block title" to "Cohort 1-4 inverted header"
+    And I set the field "HTML block title" to "Cohort 1-4 inverted header"
     And I set the field "id_config_cohorts" to "1-2, 3-4"
     And I set the field "config_invertcohortselection" to "1"
     And I press "Save changes"
@@ -161,7 +161,7 @@ Feature: HTML (on cohorts) blocks in a course with several cohort restrictions
     And I add the "HTML (on cohorts)" block
     And I configure the "new HTML (on cohorts)" block
     And I set the field "Content" to "Cohort 1-2 content"
-    And I set the field "Block title" to "Cohort 1-2 header"
+    And I set the field "HTML block title" to "Cohort 1-2 header"
     And I set the field "id_config_cohorts" to "1-2"
     And I press "Save changes"
     And I should see "Restricted" in the "Cohort 1-2 header" "block"
@@ -179,7 +179,7 @@ Feature: HTML (on cohorts) blocks in a course with several cohort restrictions
     And I add the "HTML (on cohorts)" block
     And I configure the "new HTML (on cohorts)" block
     And I set the field "Content" to "Cohort 1-2 inverted content"
-    And I set the field "Block title" to "Cohort 1-2 inverted header"
+    And I set the field "HTML block title" to "Cohort 1-2 inverted header"
     And I set the field "id_config_cohorts" to "1-2"
     And I set the field "config_invertcohortselection" to "1"
     And I press "Save changes"
@@ -198,7 +198,7 @@ Feature: HTML (on cohorts) blocks in a course with several cohort restrictions
     And I add the "HTML (on cohorts)" block
     And I configure the "new HTML (on cohorts)" block
     And I set the field "Content" to "No cohort inverted content"
-    And I set the field "Block title" to "No cohort inverted header"
+    And I set the field "HTML block title" to "No cohort inverted header"
     And I set the field "config_invertcohortselection" to "1"
     And I press "Save changes"
     And I should see "Unrestricted" in the "No cohort inverted header" "block"
@@ -216,7 +216,7 @@ Feature: HTML (on cohorts) blocks in a course with several cohort restrictions
     And I add the "HTML (on cohorts)" block
     And I configure the "new HTML (on cohorts)" block
     And I set the field "Content" to "No cohort content"
-    And I set the field "Block title" to "No cohort header"
+    And I set the field "HTML block title" to "No cohort header"
     And I press "Save changes"
     And I should see "Restricted" in the "No cohort header" "block"
     And I should see "This block is not visible to any user." in the "No cohort header" "block"

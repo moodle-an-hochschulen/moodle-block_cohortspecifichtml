@@ -22,7 +22,7 @@ Feature: HTML (on cohorts) blocks in a course
     And I add the "HTML (on cohorts)" block
     And I configure the "new HTML (on cohorts)" block
     And I set the field "Content" to "First block content"
-    And I set the field "Block title" to "First block header"
+    And I set the field "HTML block title" to "First block header"
     And I should see "No cohorts are defined yet. Without any cohorts the block will not be visible to anybody, even if you have entered content above."
     And I press "Save changes"
     And I log out

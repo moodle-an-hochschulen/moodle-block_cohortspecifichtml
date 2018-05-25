@@ -34,7 +34,7 @@ Feature: Adding and configuring HTML (on cohorts) blocks
     And I press "Save changes"
     Then I should not see "new HTML (on cohorts)"
     And I configure the "block_cohortspecifichtml" block
-    And I set the field "Block title" to "The HTML block header"
+    And I set the field "HTML block title" to "The HTML block header"
     And I set the field "Content" to "Static text with a header"
     And I press "Save changes"
     And "block_cohortspecifichtml" "block" should exist
@@ -51,7 +51,7 @@ Feature: Adding and configuring HTML (on cohorts) blocks
     And I press "Save changes"
     Then I should not see "new HTML (on cohorts)"
     And I configure the "block_cohortspecifichtml" block
-    And I set the field "Block title" to "The HTML block header"
+    And I set the field "HTML block title" to "The HTML block header"
     And I set the field "Content" to "Static text with a header"
     And I press "Save changes"
     And "block_cohortspecifichtml" "block" should exist
