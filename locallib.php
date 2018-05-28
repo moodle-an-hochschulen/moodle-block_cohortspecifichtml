@@ -227,11 +227,13 @@ function block_cohortspecifichtml_get_restrictioninfo($blockinstance) {
                     array('class' => 'label label-info'));
                 $info .= html_writer::tag('span', get_string('notvisibletoall',
                     'block_cohortspecifichtml'), array('class' => 'small'));
+                $info .= html_writer::tag('hr', null);
             } else {
                 $info .= html_writer::tag('span', get_string('unrestricted',
                     'block_cohortspecifichtml'), array('class' => 'label label-info'));
                 $info .= html_writer::tag('span', get_string('visibletoall',
                     'block_cohortspecifichtml'), array('class' => 'small'));
+                $info .= html_writer::tag('hr', null);
             }
         }
     }
