@@ -4,7 +4,7 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
-### Unreleased
+### Release v3.5-r1
 
 * 2018-05-28 Fixed PHPDoc errors.
 * 2018-05-28 Added hr to all possible cases to separate content from cohort restriction info.
