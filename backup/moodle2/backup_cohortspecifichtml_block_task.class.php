@@ -15,6 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Specialised backup task for the html block
  * @package    block_cohortspecifichtml
  * @subpackage backup-moodle2
  * @copyright  2018 Kathrin Osswald, Ulm University kathrin.osswald@uni-ulm.de
@@ -25,8 +26,12 @@
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Specialised backup task for the html block
- * (requires encode_content_links in some configdata attrs)
+ * Specialised backup task for the html block (requires encode_content_links in some configdata attrs)
+ * @package    block_cohortspecifichtml
+ * @subpackage backup-moodle2
+ * @copyright  2018 Kathrin Osswald, Ulm University kathrin.osswald@uni-ulm.de
+ *             based on code from 2003 onwards Eloy Lafuente (stronk7) {@link http://stronk7.com}
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class backup_cohortspecifichtml_block_task extends backup_block_task {
 

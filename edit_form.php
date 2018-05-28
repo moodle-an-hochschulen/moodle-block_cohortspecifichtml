@@ -32,6 +32,13 @@ defined('MOODLE_INTERNAL') || die();
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class block_cohortspecifichtml_edit_form extends block_edit_form {
+
+    /**
+     * Create any form fields specific to this type of block.
+     * @param object $mform
+     *
+     * @throws coding_exception
+     */
     protected function specific_definition($mform) {
         global $CFG;
 
@@ -86,6 +93,12 @@ class block_cohortspecifichtml_edit_form extends block_edit_form {
         }
     }
 
+    /**
+     * Function set_data
+     * @param array|stdClass $defaults
+     *
+     * @throws dml_exception
+     */
     public function set_data($defaults) {
         if (!empty($this->block->config) && is_object($this->block->config)) {
             $text = $this->block->config->text;

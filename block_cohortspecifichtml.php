@@ -24,20 +24,43 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+/**
+ * Form for editing HTML block (on cohorts) instances.
+ * @package   block_cohortspecifichtml
+ * @copyright 2017 Kathrin Osswald, Ulm University kathrin.osswald@uni-ulm.de
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class block_cohortspecifichtml extends block_base {
 
+    /**
+     * Core function used to initialize the block.
+     */
     public function init() {
         $this->title = get_string('pluginname', 'block_cohortspecifichtml');
     }
 
+    /**
+     * Allow the block to have a configuration page
+     *
+     * @return boolean
+     */
     public function has_config() {
         return true;
     }
 
+    /**
+     * Core function, specifies where the block can be used.
+     *
+     * @return array
+     */
     public function applicable_formats() {
         return array('all' => true);
     }
 
+    /**
+     * Special method acting on instance data just after it's loaded to set block title.
+     * @throws coding_exception
+     */
     public function specialization() {
         global $CFG;
         require_once($CFG->dirroot . '/blocks/cohortspecifichtml/locallib.php');
@@ -64,10 +87,20 @@ class block_cohortspecifichtml extends block_base {
         }
     }
 
+    /**
+     * Allows the block to be added multiple times to a single page
+     *
+     * @return boolean
+     */
     public function instance_allow_multiple() {
         return true;
     }
 
+    /**
+     * Used to generate the content for the block.
+     *
+     * @return string
+     */
     public function get_content() {
         global $CFG;
 
@@ -122,6 +155,8 @@ class block_cohortspecifichtml extends block_base {
 
     /**
      * Serialize and store config data
+     * @param object $data
+     * @param bool $nolongerused
      */
     public function instance_config_save($data, $nolongerused = false) {
         $config = clone($data);
@@ -143,6 +178,11 @@ class block_cohortspecifichtml extends block_base {
         parent::instance_config_save($config, $nolongerused);
     }
 
+    /**
+     * Delete a block, and associated data.
+     *
+     * @return bool
+     */
     public function instance_delete() {
         $fs = get_file_storage();
         $fs->delete_area_files($this->context->id, 'block_cohortspecifichtml');
@@ -152,6 +192,7 @@ class block_cohortspecifichtml extends block_base {
     /**
      * Copy any block-specific data when copying to a new block instance.
      * @param int $fromid the id number of the block instance to copy from
+     *
      * @return boolean
      */
     public function instance_copy($fromid) {
@@ -168,6 +209,12 @@ class block_cohortspecifichtml extends block_base {
         return true;
     }
 
+    /**
+     * content_is_trusted method
+     *
+     * @return bool
+     * @throws coding_exception
+     */
     public function content_is_trusted() {
         global $SCRIPT;
 
@@ -199,7 +246,7 @@ class block_cohortspecifichtml extends block_base {
         return (!empty($this->config->title) && parent::instance_can_be_docked());
     }
 
-    /*
+    /**
      * Add custom html attributes to aid with theming and styling
      *
      * @return array

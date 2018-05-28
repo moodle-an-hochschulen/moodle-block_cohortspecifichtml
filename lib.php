@@ -108,8 +108,8 @@ function block_cohortspecifichtml_pluginfile($course, $birecordorcm, $context, $
 
 /**
  * Perform global search replace such as when migrating site to new URL.
- * @param  $search
- * @param  $replace
+ * @param  string $search
+ * @param  string $replace
  * @return void
  */
 function block_cohortspecifichtml_global_db_replace($search, $replace) {

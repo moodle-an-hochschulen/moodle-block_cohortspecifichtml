@@ -15,6 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Specialised restore task for the cohortspecifichtml block
  * @package    block_cohortspecifichtml
  * @subpackage backup-moodle2
  * @copyright  2018 Kathrin Osswald, Ulm University kathrin.osswald@uni-ulm.de
@@ -25,8 +26,12 @@
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Specialised restore task for the cohortspecifichtml block
- * (requires encode_content_links in some configdata attrs)
+ * Specialised restore task for the cohortspecifichtml block (requires encode_content_links in some configdata attrs)
+ * @package    block_cohortspecifichtml
+ * @subpackage backup-moodle2
+ * @copyright  2018 Kathrin Osswald, Ulm University kathrin.osswald@uni-ulm.de
+ *             based on code from 2003 onwards Eloy Lafuente (stronk7) {@link http://stronk7.com}
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class restore_cohortspecifichtml_block_task extends restore_block_task {
 
@@ -84,13 +89,22 @@ class restore_cohortspecifichtml_block_task extends restore_block_task {
     }
 }
 
-/**
- * Specialised restore_decode_content provider that unserializes the configdata
+/* Specialised restore_decode_content provider that unserializes the configdata
  * field, to serve the configdata->text content to the restore_decode_processor
  * packaging it back to its serialized form after process
  */
+
+/**
+ * Class restore_cohortspecifichtml_block_decode_content
+ * @copyright  2018 Kathrin Osswald, Ulm University kathrin.osswald@uni-ulm.de
+ *             based on code from 2003 onwards Eloy Lafuente (stronk7) {@link http://stronk7.com}
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class restore_cohortspecifichtml_block_decode_content extends restore_decode_content {
 
+    /**
+     * @var object $configdata
+     */
     protected $configdata; // Temp storage for unserialized configdata.
 
     /**
