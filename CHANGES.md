@@ -4,6 +4,10 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
+### Unreleased
+
+* 2018-05-12 - Changed travis.yml due to upstream changes.
+
 ### Release v3.5-r1
 
 * 2018-05-28 Fixed PHPDoc errors.
