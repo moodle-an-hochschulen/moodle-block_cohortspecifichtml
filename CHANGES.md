@@ -6,6 +6,7 @@ Changes
 
 ### Unreleased
 
+* 2019-01-15 - Check compatibility for Moodle 3.6, no functionality change.
 * 2018-05-12 - Changed travis.yml due to upstream changes.
 
 ### Release v3.5-r1
