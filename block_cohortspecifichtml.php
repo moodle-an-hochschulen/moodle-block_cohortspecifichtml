@@ -152,6 +152,56 @@ class block_cohortspecifichtml extends block_base {
         return $this->content;
     }
 
+    /**
+     * Return an object containing all the block content to be returned by external functions.
+     *
+     * @param  core_renderer $output the rendered used for output
+     * @return stdClass      object containing the block title, central content, footer and linked files (if any).
+     * @since  Moodle 3.6
+     */
+    public function get_content_for_external($output) {
+        global $CFG;
+        require_once($CFG->libdir . '/externallib.php');
+        require_once($CFG->libdir . '/filelib.php');
+        require_once($CFG->dirroot . '/cohort/lib.php');
+        require_once($CFG->dirroot . '/blocks/cohortspecifichtml/locallib.php');
+
+        $bc = new stdClass;
+        $bc->title = null;
+        $bc->content = '';
+        $bc->contenformat = FORMAT_MOODLE;
+        $bc->footer = '';
+        $bc->files = [];
+
+        // Show the block to the users that should see the block.
+        if (block_cohortspecifichtml_show_block($this) == true ||
+            block_cohortspecifichtml_get_caneditandediton($this) == true) {
+
+            if (!$this->hide_header()) {
+                $bc->title = $this->title;
+            }
+
+            if (isset($this->config->text)) {
+                $filteropt = new stdClass;
+                if ($this->content_is_trusted()) {
+                    // Fancy html allowed only on course, category and system blocks.
+                    $filteropt->noclean = true;
+                }
+
+                $format = FORMAT_HTML;
+                // Check to see if the format has been properly set on the config.
+                if (isset($this->config->format)) {
+                    $format = $this->config->format;
+                }
+                list($bc->content, $bc->contentformat) =
+                    external_format_text($this->config->text, $format, $this->context, 'block_cohortspecifichtml',
+                        'content', null, $filteropt);
+                $bc->files = external_util::get_area_files($this->context->id, 'block_cohortspecifichtml',
+                    'content', false, false);
+            }
+        }
+        return $bc;
+    }
 
     /**
      * Serialize and store config data
