@@ -27,7 +27,9 @@ namespace block_cohortspecifichtml\privacy;
 
 defined('MOODLE_INTERNAL') || die();
 
+use \core_privacy\local\request\userlist;
 use \core_privacy\local\request\approved_contextlist;
+use \core_privacy\local\request\approved_userlist;
 use \core_privacy\local\request\writer;
 use \core_privacy\local\request\helper;
 use \core_privacy\local\request\deletion_criteria;
@@ -42,6 +44,7 @@ use \core_privacy\local\metadata\collection;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class provider implements \core_privacy\local\metadata\provider,
+        \core_privacy\local\request\core_userlist_provider,
         \core_privacy\local\request\plugin\provider {
 
     /**
@@ -76,14 +79,43 @@ class provider implements \core_privacy\local\metadata\provider,
                    AND bpc.instanceid = :userid";
 
         $params = [
-            'contextblock' => CONTEXT_BLOCK,
-            'contextuser' => CONTEXT_USER,
-            'userid' => $userid,
+                'contextblock' => CONTEXT_BLOCK,
+                'contextuser' => CONTEXT_USER,
+                'userid' => $userid,
         ];
 
         $contextlist->add_from_sql($sql, $params);
 
         return $contextlist;
+    }
+
+    /**
+     * Get the list of users who have data within a context.
+     *
+     * @param userlist $userlist The userlist containing the list of users who have data in this context/plugin combination.
+     */
+    public static function get_users_in_context(userlist $userlist) {
+        // This block doesn't know who information is stored against unless it
+        // is at the user context.
+        $context = $userlist->get_context();
+
+        if (!$context instanceof \context_block) {
+            return;
+        }
+
+        $sql = "SELECT bpc.instanceid AS userid
+                  FROM {block_instances} bi
+                  JOIN {context} bpc ON bpc.id = bi.parentcontextid
+                 WHERE bi.blockname = 'cohortspecifichtml'
+                   AND bpc.contextlevel = :contextuser
+                   AND bi.id = :blockinstanceid";
+
+        $params = [
+                'contextuser' => CONTEXT_USER,
+                'blockinstanceid' => $context->instanceid
+        ];
+
+        $userlist->add_from_sql('userid', $sql, $params);
     }
 
     /**
@@ -110,7 +142,7 @@ class provider implements \core_privacy\local\metadata\provider,
         ";
 
         $params = [
-            'contextlevel' => CONTEXT_BLOCK,
+                'contextlevel' => CONTEXT_BLOCK,
         ];
         $params += $contextparams;
 
@@ -123,16 +155,16 @@ class provider implements \core_privacy\local\metadata\provider,
                 continue;
             }
 
-            $html = writer::with_context($context)->rewrite_pluginfile_urls([], 'block_cohortspecifichtml', 'content',
-                    null, $block->config->text);
+            $html = writer::with_context($context)
+                ->rewrite_pluginfile_urls([], 'block_cohortspecifichtml', 'content', null, $block->config->text);
 
             // Default to FORMAT_HTML which is what will have been used before the
             // editor was properly implemented for the block.
             $format = isset($block->config->format) ? $block->config->format : FORMAT_HTML;
 
             $filteropt = (object) [
-                'overflowdiv' => true,
-                'noclean' => true,
+                    'overflowdiv' => true,
+                    'noclean' => true,
             ];
             $html = format_text($html, $format, $filteropt);
 
@@ -158,7 +190,22 @@ class provider implements \core_privacy\local\metadata\provider,
         }
 
         // The only way to delete data for the html block is to delete the block instance itself.
-        blocks_delete_instance(static::get_instance_from_context($context));
+        if ($blockinstance = static::get_instance_from_context($context)) {
+            blocks_delete_instance($blockinstance);
+        }
+    }
+
+    /**
+     * Delete multiple users within a single context.
+     *
+     * @param approved_userlist $userlist The approved context and user information to delete information for.
+     */
+    public static function delete_data_for_users(approved_userlist $userlist) {
+        $context = $userlist->get_context();
+
+        if ($context instanceof \context_block && ($blockinstance = static::get_instance_from_context($context))) {
+            blocks_delete_instance($blockinstance);
+        }
     }
 
     /**
@@ -173,7 +220,9 @@ class provider implements \core_privacy\local\metadata\provider,
             if (!$context instanceof \context_block) {
                 continue;
             }
-            blocks_delete_instance(static::get_instance_from_context($context));
+            if ($blockinstance = static::get_instance_from_context($context)) {
+                blocks_delete_instance($blockinstance);
+            }
         }
     }
 
@@ -186,6 +235,6 @@ class provider implements \core_privacy\local\metadata\provider,
     protected static function get_instance_from_context(\context_block $context) {
         global $DB;
 
-        return $DB->get_record('block_instances', ['id' => $context->instanceid]);
+        return $DB->get_record('block_instances', ['id' => $context->instanceid, 'blockname' => 'cohortspecifichtml']);
     }
 }
