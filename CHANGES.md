@@ -6,6 +6,7 @@ Changes
 
 ### Unreleased
 
+* 2019-06-17 - Adjusted lib.php due to upstream changes in block HTML.
 * 2019-06-17 - Prepare compatibility for Moodle 3.7.
 
 ### Release v3.6-r1
