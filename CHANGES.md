@@ -4,6 +4,10 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
+### Unreleased
+
+* 2019-06-17 - Prepare compatibility for Moodle 3.7.
+
 ### Release v3.6-r1
 
 * 2019-01-15 - Added newly introduced core function "get_content_for_external".
