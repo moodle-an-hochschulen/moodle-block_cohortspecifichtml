@@ -4,7 +4,7 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
-### Unreleased
+### Release v3.7-r1
 
 * 2019-06-17 - Adjusted lib.php due to upstream changes in block HTML.
 * 2019-06-17 - Prepare compatibility for Moodle 3.7.
