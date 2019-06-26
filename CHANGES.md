@@ -4,6 +4,10 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
+### Unreleased
+
+* 2019-06-16 - Removed additional tags for dev purposes from behat tests.
+
 ### Release v3.7-r1
 
 * 2019-06-17 - Adjusted lib.php due to upstream changes in block HTML.

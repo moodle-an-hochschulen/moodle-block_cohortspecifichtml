@@ -1,4 +1,4 @@
-@block @block_cohortspecifichtml @configure
+@block @block_cohortspecifichtml
 Feature: Adding and configuring HTML (on cohorts) blocks
   In order to have custom blocks on a page
   As admin

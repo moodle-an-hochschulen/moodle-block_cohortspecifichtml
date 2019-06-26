@@ -1,4 +1,4 @@
-@block @block_cohortspecifichtml @cohort_restrictions
+@block @block_cohortspecifichtml
 Feature: HTML (on cohorts) blocks in a course with several cohort restrictions
   In order to have one or multiple HTML (on cohorts) blocks in a course
   As a teacher

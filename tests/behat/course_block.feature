@@ -1,4 +1,4 @@
-@block @block_cohortspecifichtml @no_cohorts
+@block @block_cohortspecifichtml
 Feature: HTML (on cohorts) blocks in a course
   In order to have one or multiple HTML (on cohorts) blocks in a course
   As a teacher
