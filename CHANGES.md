@@ -6,6 +6,7 @@ Changes
 
 ### Unreleased
 
+* 2020-02-18 - Prepare compatibility for Moodle 3.8.
 * 2019-06-16 - Removed additional tags for dev purposes from behat tests.
 
 ### Release v3.7-r1
