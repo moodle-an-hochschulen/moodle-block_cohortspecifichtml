@@ -4,6 +4,10 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
+### Unreleased
+
+* 2020-07-16 - Prepare compatibility for Moodle 3.9.
+
 ### Release v3.8-r1
 
 * 2020-02-21 - Added new functions due to upstream changes in block HTML and Moodle core.

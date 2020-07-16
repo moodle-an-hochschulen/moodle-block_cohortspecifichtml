@@ -9,7 +9,7 @@ This HTML block provides the possibility to selectively display the block to mem
 Requirements
 ------------
 
-This plugin requires Moodle 3.8+
+This plugin requires Moodle 3.9+
 
 
 Motivation for this plugin
