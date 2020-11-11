@@ -1,7 +1,7 @@
 moodle-block_cohortspecifichtml
 ===============================
 
-[![Build Status](https://travis-ci.org/moodleuulm/moodle-block_cohortspecifichtml.svg?branch=master)](https://travis-ci.org/moodleuulm/moodle-block_cohortspecifichtml)
+[![Build Status](https://travis-ci.com/moodleuulm/moodle-block_cohortspecifichtml.svg?branch=master)](https://travis-ci.com/moodleuulm/moodle-block_cohortspecifichtml)
 
 This HTML block provides the possibility to selectively display the block to members of specific cohorts.
 
