@@ -44,7 +44,7 @@ $string['resetcohortselection'] = 'Reset selection';
 $string['resetcohortselection_help'] = 'If you enable and save this setting, the selection you made will be reset. This means that no cohorts are selected. Unfortunately, this workaround is needed, because unselecting all cohorts would not result in any change as an empty result is passed to the server. <br/>
 If you open the block configuration again this setting is reset and won\'t be shown as there is nothing that could be reset anymore.';
 
-// Labels / Information.
+// Badges / Information.
 $string['notvisibletocohorts'] = '<br/><strong>Not</strong> visible to cohorts:';
 $string['notvisibletoall'] = '<br/>This block is <strong>not visible</strong> to <strong>any</strong> user.';
 $string['unrestricted'] = 'Unrestricted';
