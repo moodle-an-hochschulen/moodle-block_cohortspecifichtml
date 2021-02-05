@@ -4,7 +4,7 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
-### Unreleased
+### v3.10-r1
 
 * 2021-01-09 - Change Bootstrap labels to badges to comply with Bootstrap 4 standards
 * 2021-01-09 - Prepare compatibility for Moodle 3.10.
