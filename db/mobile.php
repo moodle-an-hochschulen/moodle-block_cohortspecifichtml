@@ -15,19 +15,26 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * HTML (on cohorts) - Version details
+ * HTML (on cohorts) - Mobile provider
  *
- * @package   block_cohortspecifichtml
- * @copyright 2017 Kathrin Osswald, Ulm University kathrin.osswald@uni-ulm.de
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package    block_cohortspecifichtml
+ * @copyright  2021 Andrew Hancox <andrewdchancox@googlemail.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'block_cohortspecifichtml';
-$plugin->version = 2021010602;
-$plugin->release = 'v3.9-r2';
-$plugin->requires = 2020061500;
-$plugin->supported = [39, 39];
-$plugin->maturity = MATURITY_STABLE;
-$plugin->dependencies = array('block_html' => 2019111800);
+$addons = [
+    'block_cohortspecifichtml' => [
+        'handlers' => [
+            'blockcohortspecifichtmlview' => [
+                'delegate' => 'CoreBlockDelegate',
+                'method' => 'mobile_block_view',
+                'displaydata' => []
+            ],
+        ],
+        'lang' => [
+            ['pluginname', 'block_cohortspecifichtml']
+        ]
+    ]
+];
