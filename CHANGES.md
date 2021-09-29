@@ -6,6 +6,7 @@ Changes
 
 ### Unreleased
 
+* 2021-09-29 - Make Moodle Codechecker happy again
 * 2021-02-05 - Move Moodle Plugin CI from Travis CI to Github actions
 
 ### Release v3.9-r2
