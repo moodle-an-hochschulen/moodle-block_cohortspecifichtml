@@ -4,7 +4,7 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
-### Unreleased
+### v3.10-r2
 
 * 2021-09-29 - Make Moodle Codechecker happy again
 * 2021-02-05 - Move Moodle Plugin CI from Travis CI to Github actions
