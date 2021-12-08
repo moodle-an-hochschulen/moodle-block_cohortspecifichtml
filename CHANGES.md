@@ -4,6 +4,10 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
+### Unreleased
+
+* 2021-12-08 - Prepare compatibility for Moodle 3.11.
+
 ### v3.10-r2
 
 * 2021-09-29 - Make Moodle Codechecker happy again
