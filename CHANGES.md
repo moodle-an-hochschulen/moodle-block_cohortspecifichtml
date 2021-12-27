@@ -4,6 +4,10 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
+### Unreleased
+
+* 2021-12-25 - Bugfix: Safer unserializing during block restore (see MDL-70823 for details)
+
 ### v3.11-r1
 
 * 2021-12-08 - Prepare compatibility for Moodle 3.11.

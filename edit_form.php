@@ -100,7 +100,7 @@ class block_cohortspecifichtml_edit_form extends block_edit_form {
      * @throws dml_exception
      */
     public function set_data($defaults) {
-        if (!empty($this->block->config) && is_object($this->block->config)) {
+        if (!empty($this->block->config) && !empty($this->block->config->text)) {
             $text = $this->block->config->text;
             $draftideditor = file_get_submitted_draft_itemid('config_text');
             if (empty($text)) {
@@ -111,7 +111,7 @@ class block_cohortspecifichtml_edit_form extends block_edit_form {
             $defaults->config_text['text'] = file_prepare_draft_area($draftideditor, $this->block->context->id,
                     'block_cohortspecifichtml', 'content', 0, array('subdirs' => true), $currenttext);
             $defaults->config_text['itemid'] = $draftideditor;
-            $defaults->config_text['format'] = $this->block->config->format;
+            $defaults->config_text['format'] = $this->block->config->format ?? FORMAT_MOODLE;
         } else {
             $text = '';
         }
