@@ -23,11 +23,9 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+namespace block_cohortspecifichtml\privacy;
 
-use \core_privacy\local\request\writer;
 use \core_privacy\local\request\approved_contextlist;
-use \block_cohortspecifichtml\privacy\provider;
 
 /**
  * Unit tests for the implementation of the privacy API.
@@ -37,7 +35,7 @@ use \block_cohortspecifichtml\privacy\provider;
  *             based on code from 2018 Andrew Nicols <andrew@nicols.co.uk>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class block_cohortspecifichtml_privacy_testcase extends \core_privacy\tests\provider_testcase {
+class privacy_test extends \core_privacy\tests\provider_testcase {
     /**
      * Get the list of standard format options for comparison.
      *
