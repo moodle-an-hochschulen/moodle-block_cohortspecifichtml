@@ -22,9 +22,6 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
- defined('MOODLE_INTERNAL') || die();
-
-
 /**
  * Get all cohorts which exist in Moodle, regardless if there visibility status, context or members.
  *
