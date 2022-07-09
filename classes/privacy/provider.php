@@ -25,8 +25,6 @@
 
 namespace block_cohortspecifichtml\privacy;
 
-defined('MOODLE_INTERNAL') || die();
-
 use \core_privacy\local\request\userlist;
 use \core_privacy\local\request\approved_contextlist;
 use \core_privacy\local\request\approved_userlist;
