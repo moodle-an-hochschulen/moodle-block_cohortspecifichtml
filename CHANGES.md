@@ -4,6 +4,10 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
+### Unreleased
+
+* 2022-07-10 - Update UPGRADE.md
+
 ### v3.11-r3
 
 * 2022-06-26 - Make codechecker happy again

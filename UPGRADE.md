@@ -14,7 +14,7 @@ General
 Upstream changes
 ----------------
 
-* This plugin does not inherit or copy anything from upstream sources.
+* This plugin is a derivative of block_html from Moodle core. If there are any upstream changes in block_html, you should check if they should be adopted to this plugin as well.
 
 
 Automated tests
