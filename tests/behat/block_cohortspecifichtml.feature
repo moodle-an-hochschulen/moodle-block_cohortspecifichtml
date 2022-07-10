@@ -27,7 +27,13 @@ Feature: Adding and configuring HTML (on cohorts) blocks
   Scenario: Configuring the HTML (on cohorts) block with Javascript on
     When I log in as "admin"
     And I am on site homepage
-    When I turn editing mode on
+    And I turn editing mode on
+    # Basically, we just want to add a block outside a course.
+    # This could be done on the site homepage.
+    # However, there may be user tours or other side effects which prevent us
+    # from adding a block right away.
+    # Thus, we proceed to course index which is problem-free.
+    And I am on course index
     And I add the "HTML (on cohorts)" block
     And I configure the "new HTML (on cohorts)" block
     And I set the field "Content" to "Static text without a header"
