@@ -55,7 +55,7 @@ Examples:
 Capabilities
 -------------
 
-This plugin also introduces a new capability:
+This plugin also introduces these additional capabilities:
 
 ### block/cohortspecifichtml:viewalways
 
