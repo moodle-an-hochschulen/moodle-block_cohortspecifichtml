@@ -4,6 +4,10 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
+### Unreleased
+
+* 2022-07-12 - Prepare compatibility for Moodle 4.0.
+
 ### v3.11-r5
 
 * 2022-07-28 - Make codechecker happy again
