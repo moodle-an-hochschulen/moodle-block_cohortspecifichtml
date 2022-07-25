@@ -4,7 +4,7 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
-### Unreleased
+### v3.10-r5
 
 * 2022-07-10 - Add Visual checks section to UPGRADE.md
 * 2022-07-10 - Update UPGRADE.md
