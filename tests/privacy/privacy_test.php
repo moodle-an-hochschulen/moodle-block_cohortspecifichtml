@@ -160,6 +160,10 @@ class privacy_test extends \core_privacy\tests\provider_testcase {
 
     /**
      * Test that a block on the dashboard is exported.
+     *
+     * This test does not test a particular class or function.
+     * It is adopted from block_html and does not have a coverage tag there either. Thus, we set coversNothing.
+     * @coversNothing
      */
     public function test_user_block() {
         $this->resetAfterTest();
@@ -202,6 +206,10 @@ class privacy_test extends \core_privacy\tests\provider_testcase {
 
     /**
      * Test that a block on the dashboard which is not configured is _not_ exported.
+     *
+     * This test does not test a particular class or function.
+     * It is adopted from block_html and does not have a coverage tag there either. Thus, we set coversNothing.
+     * @coversNothing
      */
     public function test_user_block_unconfigured() {
         global $DB;
@@ -237,6 +245,10 @@ class privacy_test extends \core_privacy\tests\provider_testcase {
 
     /**
      * Test that a block on the dashboard is exported.
+     *
+     * This test does not test a particular class or function.
+     * It is adopted from block_html and does not have a coverage tag there either. Thus, we set coversNothing.
+     * @coversNothing
      */
     public function test_user_multiple_blocks_exported() {
         $this->resetAfterTest();
@@ -281,6 +293,10 @@ class privacy_test extends \core_privacy\tests\provider_testcase {
 
     /**
      * Test that a block on the dashboard is not exported.
+     *
+     * This test does not test a particular class or function.
+     * It is adopted from block_html and does not have a coverage tag there either. Thus, we set coversNothing.
+     * @coversNothing
      */
     public function test_course_blocks_not_exported() {
         $this->resetAfterTest();
@@ -306,6 +322,10 @@ class privacy_test extends \core_privacy\tests\provider_testcase {
 
     /**
      * Test that a block on the dashboard is exported.
+     *
+     * This test does not test a particular class or function.
+     * It is adopted from block_html and does not have a coverage tag there either. Thus, we set coversNothing.
+     * @coversNothing
      */
     public function test_mixed_multiple_blocks_exported() {
         $this->resetAfterTest();
