@@ -4,6 +4,10 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
+### Unreleased
+
+* 2022-07-28 - Make codechecker happy again
+
 ### v3.11-r4
 
 * 2022-07-10 - Add Visual checks section to UPGRADE.md
