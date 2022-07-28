@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * HTML (on cohorts) - Unit tests for the implementation of the privacy API.
+ * Text (on cohorts) - Unit tests for the implementation of the privacy API.
  *
  * @package    block_cohortspecifichtml
  * @copyright  2018 Alexander Bias, Ulm University <alexander.bias@uni-ulm.de>
@@ -49,7 +49,7 @@ class privacy_test extends \core_privacy\tests\provider_testcase {
     }
 
     /**
-     * Creates an HTML (on cohorts) block on a user.
+     * Creates an Text (on cohorts) block on a user.
      *
      * @param string $title
      * @param string $body
@@ -77,7 +77,7 @@ class privacy_test extends \core_privacy\tests\provider_testcase {
     }
 
     /**
-     * Creates an HTML (on cohorts) block on a course.
+     * Creates an Text (on cohorts) block on a course.
      *
      * @param \stdClass $course
      * @param string $title
@@ -106,7 +106,7 @@ class privacy_test extends \core_privacy\tests\provider_testcase {
     }
 
     /**
-     * Creates an HTML (on cohorts) block on a page.
+     * Creates an Text (on cohorts) block on a page.
      *
      * @param \page $page Page
      */

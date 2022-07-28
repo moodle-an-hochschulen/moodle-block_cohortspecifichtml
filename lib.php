@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * HTML (on cohorts) - Edit form
+ * Text (on cohorts) - Edit form
  *
  * @package   block_cohortspecifichtml
  * @copyright 2017 Kathrin Osswald, Ulm University kathrin.osswald@uni-ulm.de
@@ -24,7 +24,7 @@
  */
 
 /**
- * Form for editing HTML block instances.
+ * Form for editing Text block instances.
  *
  * @param stdClass $course course object
  * @param stdClass $birecordorcm block instance record

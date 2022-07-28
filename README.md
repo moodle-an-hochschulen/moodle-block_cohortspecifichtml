@@ -3,7 +3,7 @@ moodle-block_cohortspecifichtml
 
 [![Moodle Plugin CI](https://github.com/moodle-an-hochschulen/moodle-block_cohortspecifichtml/workflows/Moodle%20Plugin%20CI/badge.svg?branch=master)](https://github.com/moodle-an-hochschulen/moodle-block_cohortspecifichtml/actions?query=workflow%3A%22Moodle+Plugin+CI%22+branch%3Amaster)
 
-This HTML block provides the possibility to selectively display the block to members of specific cohorts.
+This Text block provides the possibility to selectively display the block to members of specific cohorts.
 
 
 Requirements
@@ -15,7 +15,7 @@ This plugin requires Moodle 4.0+
 Motivation for this plugin
 --------------------------
 
-In Moodle core, there is the HTML block which allows you to add HTML content to courses. The content of these block instances is shown to all users that are allowed to access the page it is placed on. However, in some scenarios, you need to restrict the visibility of the HTML block to members of specific cohorts. This plugin adds this functionality to the HTML block. This means that the instances of this block behave generally like any other HTML block instance, only with the feature that the visibility of the block is restricted to defined cohorts.
+In Moodle core, there is the Text block which allows you to add Text content to courses. The content of these block instances is shown to all users that are allowed to access the page it is placed on. However, in some scenarios, you need to restrict the visibility of the Text block to members of specific cohorts. This plugin adds this functionality to the Text block. This means that the instances of this block behave generally like any other Text block instance, only with the feature that the visibility of the block is restricted to defined cohorts.
 
 
 Installation
@@ -33,7 +33,7 @@ Usage & Settings
 After installing the plugin, it does not do anything to Moodle yet.
 
 To configure the plugin and its behaviour, please visit:
-Site administration -> Plugins -> Blocks -> HTML (on cohort)
+Site administration -> Plugins -> Blocks -> Text (on cohort)
 
 This plugin has the following additional settings for block instances:
 
@@ -59,8 +59,8 @@ This plugin also introduces these additional capabilities:
 
 ### block/cohortspecifichtml:viewalways
 
-HTML (on cohorts) blocks are always visible to the capability owners independently from any membership in defined cohorts. By default, this capability is not allocated to any standard roles.
-As an admin, you might want to add this capability to the teacher role to let teachers see all the HTML (on cohort) block contents independently from the editing state of the course.
+Text (on cohorts) blocks are always visible to the capability owners independently from any membership in defined cohorts. By default, this capability is not allocated to any standard roles.
+As an admin, you might want to add this capability to the teacher role to let teachers see all the Text (on cohort) block contents independently from the editing state of the course.
 
 
 Theme support

@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Block HTML (on cohorts) - Locallib file
+ * Block Text (on cohorts) - Locallib file
  *
  * @package   block_cohortspecifichtml
  * @copyright 2017 Kathrin Osswald, Ulm University kathrin.osswald@uni-ulm.de

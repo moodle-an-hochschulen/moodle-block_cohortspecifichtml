@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * HTML (on cohorts) - Language package
+ * Text (on cohorts) - Language package
  *
  * @package   block_cohortspecifichtml
  * @copyright 2017 Kathrin Osswald, Ulm University kathrin.osswald@uni-ulm.de
@@ -23,15 +23,15 @@
  */
 
 
-$string['pluginname'] = 'HTML (on cohorts)';
+$string['pluginname'] = 'Text (on cohorts)';
 
 // Capabilities.
-$string['cohortspecifichtml:addinstance'] = 'Add a new HTML (on cohorts) block';
-$string['cohortspecifichtml:myaddinstance'] = 'Add a new HTML (on cohorts) block to Dashboard';
+$string['cohortspecifichtml:addinstance'] = 'Add a new Text (on cohorts) block';
+$string['cohortspecifichtml:myaddinstance'] = 'Add a new Text (on cohorts) block to Dashboard';
 $string['cohortspecifichtml:viewalways'] = 'Always view the block';
 
 // Settings.
-$string['newhtmlcohortblock'] = 'new HTML (on cohorts)';
+$string['newhtmlcohortblock'] = 'New Text (on cohorts)';
 $string['cohortselection'] = 'Show to cohorts';
 $string['cohortselection_help'] = 'The block will be only shown to the members of at least one selected cohort. This means that if you selected, for example, two cohorts and a user is only member of one of them, the block will be displayed to him as he is part of at least one selected cohort. This is equivalent to an OR connection.';
 $string['nocohorts'] = 'No cohorts are defined yet. Without any cohorts <strong>the block will not be visible</strong> to anybody, even if you have entered content above. <br/>
@@ -52,4 +52,4 @@ $string['visibletocohorts'] = '<br/><strong>Only</strong> visible to cohorts:';
 $string['visibletoall'] = '<br/>This block is <strong>visible</strong> to <strong>all</strong> users.';
 
 // Privacy.
-$string['privacy:metadata:block'] = 'The HTML (on cohorts) block stores all of its data within the block subsystem.';
+$string['privacy:metadata:block'] = 'The Text (on cohorts) block stores all of its data within the block subsystem.';

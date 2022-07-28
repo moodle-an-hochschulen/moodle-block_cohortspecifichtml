@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * HTML (on cohorts) - Privacy provider
+ * Text (on cohorts) - Privacy provider
  *
  * @package    block_cohortspecifichtml
  * @copyright  2018 Alexander Bias, Ulm University <alexander.bias@uni-ulm.de>

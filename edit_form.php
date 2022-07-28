@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * HTML (on cohorts) - Edit form
+ * Text (on cohorts) - Edit form
  *
  * @package   block_cohortspecifichtml
  * @copyright 2017 Kathrin Osswald, Ulm University kathrin.osswald@uni-ulm.de
@@ -24,7 +24,7 @@
  */
 
 /**
- * Form for editing HTML block instances.
+ * Form for editing Text block instances.
  *
  * @copyright 2017 Kathrin Osswald based on code from Tim Hunt 2009
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -42,7 +42,7 @@ class block_cohortspecifichtml_edit_form extends block_edit_form {
 
         require_once($CFG->dirroot . '/blocks/cohortspecifichtml/locallib.php');
 
-        // Fields for editing HTML block title and contents.
+        // Fields for editing Text block title and contents.
         $mform->addElement('header', 'configheader', get_string('blocksettings', 'block'));
 
         // Block title.

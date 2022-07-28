@@ -1,8 +1,8 @@
 @block @block_cohortspecifichtml
-Feature: Adding and configuring HTML (on cohorts) blocks
+Feature: Adding and configuring Text (on cohorts) blocks
   In order to have custom blocks on a page
   As admin
-  I need to be able to create, configure and change HTML (on cohorts) blocks
+  I need to be able to create, configure and change Text (on cohorts) blocks
 
   Background:
     Given the following "users" exist:
@@ -24,7 +24,7 @@ Feature: Adding and configuring HTML (on cohorts) blocks
       | student4 | 34     |
 
   @javascript
-  Scenario: Configuring the HTML (on cohorts) block with Javascript on
+  Scenario: Configuring the Text (on cohorts) block with Javascript on
     When I log in as "admin"
     And I am on site homepage
     And I turn editing mode on
@@ -34,32 +34,32 @@ Feature: Adding and configuring HTML (on cohorts) blocks
     # from adding a block right away.
     # Thus, we proceed to course index which is problem-free.
     And I am on course index
-    And I add the "HTML (on cohorts)" block
-    And I configure the "new HTML (on cohorts)" block
+    And I add the "Text (on cohorts)" block
+    And I configure the "New Text (on cohorts)" block
     And I set the field "Content" to "Static text without a header"
     And I press "Save changes"
-    Then I should not see "new HTML (on cohorts)"
+    Then I should not see "New Text (on cohorts)"
     And I configure the "block_cohortspecifichtml" block
-    And I set the field "HTML block title" to "The HTML block header"
+    And I set the field "Text block title" to "The Text block header"
     And I set the field "Content" to "Static text with a header"
     And I press "Save changes"
     And "block_cohortspecifichtml" "block" should exist
-    And "The HTML block header" "block" should exist
-    Then I should see "Static text with a header" in the "The HTML block header" "block"
+    And "The Text block header" "block" should exist
+    Then I should see "Static text with a header" in the "The Text block header" "block"
 
-  Scenario: Configuring the HTML (on cohorts) block with Javascript off
+  Scenario: Configuring the Text (on cohorts) block with Javascript off
     When I log in as "admin"
     And I am on site homepage
     When I turn editing mode on
-    And I add the "HTML (on cohorts)" block
-    And I configure the "new HTML (on cohorts)" block
+    And I add the "Text (on cohorts)" block
+    And I configure the "New Text (on cohorts)" block
     And I set the field "Content" to "Static text without a header"
     And I press "Save changes"
-    Then I should not see "new HTML (on cohorts)"
+    Then I should not see "New Text (on cohorts)"
     And I configure the "block_cohortspecifichtml" block
-    And I set the field "HTML block title" to "The HTML block header"
+    And I set the field "Text block title" to "The Text block header"
     And I set the field "Content" to "Static text with a header"
     And I press "Save changes"
     And "block_cohortspecifichtml" "block" should exist
-    And "The HTML block header" "block" should exist
-    Then I should see "Static text with a header" in the "The HTML block header" "block"
+    And "The Text block header" "block" should exist
+    Then I should see "Static text with a header" in the "The Text block header" "block"

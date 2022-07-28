@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Form for editing HTML block (on cohorts) instances.
+ * Form for editing Text block (on cohorts) instances.
  *
  * @package   block_cohortspecifichtml
  * @copyright 2017 Kathrin Osswald, Ulm University kathrin.osswald@uni-ulm.de
@@ -23,7 +23,7 @@
  */
 
 /**
- * Form for editing HTML block (on cohorts) instances.
+ * Form for editing Text block (on cohorts) instances.
  * @package   block_cohortspecifichtml
  * @copyright 2017 Kathrin Osswald, Ulm University kathrin.osswald@uni-ulm.de
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
