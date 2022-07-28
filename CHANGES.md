@@ -4,7 +4,7 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
-### Unreleased
+### v3.11-r5
 
 * 2022-07-28 - Make codechecker happy again
 
