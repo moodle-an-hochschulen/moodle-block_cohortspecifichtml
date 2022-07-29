@@ -4,7 +4,7 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
-### Unreleased
+### v4.0-r1
 
 * 2022-07-12 - Rename HTML block to Text (similar to MDL-72118).
 * 2022-07-12 - Make codechecker happy again
