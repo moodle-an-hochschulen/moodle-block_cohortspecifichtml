@@ -4,7 +4,7 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
-### Unreleased
+### v3.11-r6
 
 * 2022-08-11 - Regression: Files and pictures within the block were not shown anymore - Credits to Ian Wild.
 
