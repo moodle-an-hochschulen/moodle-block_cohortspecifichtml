@@ -4,6 +4,10 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
+### Unreleased
+
+* 2022-08-11 - Regression: Files and pictures within the block were not shown anymore - Credits to Ian Wild.
+
 ### v4.0-r1
 
 * 2022-07-12 - Rename HTML block to Text (similar to MDL-72118).
