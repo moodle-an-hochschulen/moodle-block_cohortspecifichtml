@@ -74,8 +74,11 @@ function block_cohortspecifichtml_pluginfile($course, $birecordorcm, $context, $
     $filename = array_pop($args);
     $filepath = $args ? '/'.implode('/', $args).'/' : '/';
 
-    if (!$file = $fs->get_file($context->id, 'block_cohortspecifichtml', 'content',
-                    0, $filepath, $filename) || $file->is_directory()) {
+    // The following three lines diverge from the code in block_html which served as blueprint for
+    // this function just because of the fact that block_html used 'and' operators which
+    // are now discouraged by the Moodle codechecker.
+    $file = $fs->get_file($context->id, 'block_cohortspecifichtml', 'content', 0, $filepath, $filename);
+    if (($file === false) || ($file->is_directory() === true)) {
         send_file_not_found();
     }
 
