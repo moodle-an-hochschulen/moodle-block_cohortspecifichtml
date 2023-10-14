@@ -52,7 +52,7 @@ class block_cohortspecifichtml extends block_base {
      * @return array
      */
     public function applicable_formats() {
-        return array('all' => true);
+        return ['all' => true];
     }
 
     /**
@@ -210,7 +210,7 @@ class block_cohortspecifichtml extends block_base {
         $config = clone($data);
         // Move embedded files into a proper filearea and adjust HTML links to match.
         $config->text = file_save_draft_area_files($data->text['itemid'], $this->context->id, 'block_cohortspecifichtml',
-            'content', 0, array('subdirs' => true), $data->text['text']);
+            'content', 0, ['subdirs' => true], $data->text['text']);
         $config->format = $data->text['format'];
 
         // We need this, as empty form selections (unselect all cohorts) won't be passed as a value to the server and therefore
@@ -218,7 +218,7 @@ class block_cohortspecifichtml extends block_base {
         // If setting to reset the selection is enabled.
         if (!empty($config->resetcohortselection) && $config->resetcohortselection != 0) {
             // Replace the saved config with an empty array.
-            $config->cohorts = array();
+            $config->cohorts = [];
             // Reset the setting again.
             $config->resetcohortselection = 0;
         }
@@ -250,9 +250,9 @@ class block_cohortspecifichtml extends block_base {
         if (!$fs->is_area_empty($fromcontext->id, 'block_cohortspecifichtml', 'content', 0, false)) {
             $draftitemid = 0;
             file_prepare_draft_area($draftitemid, $fromcontext->id, 'block_cohortspecifichtml',
-                'content', 0, array('subdirs' => true));
+                'content', 0, ['subdirs' => true]);
             file_save_draft_area_files($draftitemid, $this->context->id, 'block_cohortspecifichtml',
-                'content', 0, array('subdirs' => true));
+                'content', 0, ['subdirs' => true]);
         }
         return true;
     }

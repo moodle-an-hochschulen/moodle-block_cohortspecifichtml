@@ -53,7 +53,7 @@ class restore_cohortspecifichtml_block_task extends restore_block_task {
      * @return array
      */
     public function get_fileareas() {
-        return array('content');
+        return ['content'];
     }
 
     /**
@@ -62,7 +62,7 @@ class restore_cohortspecifichtml_block_task extends restore_block_task {
      * @return array
      */
     public function get_configdata_encoded_attributes() {
-        return array('text'); // We need to encode some attrs in configdata.
+        return ['text']; // We need to encode some attrs in configdata.
     }
 
     /**
@@ -72,7 +72,7 @@ class restore_cohortspecifichtml_block_task extends restore_block_task {
      */
     public static function define_decode_contents() {
 
-        $contents = array();
+        $contents = [];
 
         $contents[] = new restore_cohortspecifichtml_block_decode_content('block_instances', 'configdata', 'block_instance');
 
@@ -85,7 +85,7 @@ class restore_cohortspecifichtml_block_task extends restore_block_task {
      * @return array
      */
     public static function define_decode_rules() {
-        return array();
+        return [];
     }
 }
 
@@ -123,7 +123,7 @@ class restore_cohortspecifichtml_block_decode_content extends restore_decode_con
                  WHERE b.backupid = ?
                    AND b.itemname = ?
                    AND t.blockname = 'cohortspecifichtml'";
-        $params = array($this->restoreid, $this->mapping);
+        $params = [$this->restoreid, $this->mapping];
         return ($DB->get_recordset_sql($sql, $params));
     }
 
