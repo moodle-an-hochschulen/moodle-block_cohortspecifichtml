@@ -37,7 +37,7 @@
  * @todo MDL-36050 improve capability check on stick blocks, so we can check user capability before sending images.
  */
 function block_cohortspecifichtml_pluginfile($course, $birecordorcm, $context, $filearea, $args,
-        $forcedownload, array $options=array()) {
+        $forcedownload, array $options=[]) {
     global $DB, $CFG, $USER;
     require_once($CFG->dirroot . '/blocks/cohortspecifichtml/locallib.php');
 
@@ -115,13 +115,13 @@ function block_cohortspecifichtml_pluginfile($course, $birecordorcm, $context, $
 function block_cohortspecifichtml_global_db_replace($search, $replace) {
     global $DB;
 
-    $instances = $DB->get_recordset('block_instances', array('blockname' => 'cohortspecifichtml'));
+    $instances = $DB->get_recordset('block_instances', ['blockname' => 'cohortspecifichtml']);
     foreach ($instances as $instance) {
         // TODO: intentionally hardcoded until MDL-26800 is fixed.
         $config = unserialize_object(base64_decode($instance->configdata));
         if (isset($config->text) && is_string($config->text)) {
             $config->text = str_replace($search, $replace, $config->text);
-            $DB->set_field('block_instances', 'configdata', base64_encode(serialize($config)), array('id' => $instance->id));
+            $DB->set_field('block_instances', 'configdata', base64_encode(serialize($config)), ['id' => $instance->id]);
         }
     }
     $instances->close();

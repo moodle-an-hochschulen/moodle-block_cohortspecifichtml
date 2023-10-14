@@ -25,7 +25,7 @@
 
 namespace block_cohortspecifichtml\privacy;
 
-use \core_privacy\local\request\approved_contextlist;
+use core_privacy\local\request\approved_contextlist;
 
 /**
  * Unit tests for the implementation of the privacy API.

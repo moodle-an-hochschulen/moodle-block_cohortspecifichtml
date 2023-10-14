@@ -30,4 +30,4 @@ $plugin->release = 'v4.1-r1';
 $plugin->requires = 2022112800;
 $plugin->supported = [401, 401];
 $plugin->maturity = MATURITY_STABLE;
-$plugin->dependencies = array('block_html' => 2021051700);
+$plugin->dependencies = ['block_html' => 2021051700];

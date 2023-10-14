@@ -51,7 +51,7 @@ class backup_cohortspecifichtml_block_task extends backup_block_task {
      * @return array
      */
     public function get_fileareas() {
-        return array('content');
+        return ['content'];
     }
 
     /**
@@ -60,7 +60,7 @@ class backup_cohortspecifichtml_block_task extends backup_block_task {
      * @return array
      */
     public function get_configdata_encoded_attributes() {
-        return array('text'); // We need to encode some attrs in configdata.
+        return ['text']; // We need to encode some attrs in configdata.
     }
 
     /**
