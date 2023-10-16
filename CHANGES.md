@@ -4,7 +4,7 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
-### Unreleased
+### v4.2-r1
 
 * 2023-09-01 - Upgrade: Fix a behat test which broke on Moodle 4.2.
 * 2023-09-01 - Prepare compatibility for Moodle 4.2.
