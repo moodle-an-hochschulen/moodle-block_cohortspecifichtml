@@ -4,6 +4,10 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
+### Unreleased
+
+* 2023-10-20 - Prepare compatibility for Moodle 4.3.
+
 ### v4.2-r2
 
 * 2023-10-23 - Adopt Moodle core change in block_html from MDL-77164
