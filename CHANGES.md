@@ -4,7 +4,7 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
-### Unreleased
+### v4.1-r3
 
 * 2023-10-23 - Adopt Moodle core change in block_html from MDL-77164
 * 2023-10-23 - Adopt Moodle core change in block_html to show the block config directly when adding the block from MDL-74465
