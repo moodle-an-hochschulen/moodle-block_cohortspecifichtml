@@ -4,6 +4,10 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
+### Unreleased
+
+* 2023-10-22 - Adopt additional privacy PHPUnit tests from block_html
+
 ### v4.2-r1
 
 * 2023-09-01 - Upgrade: Fix a behat test which broke on Moodle 4.2.

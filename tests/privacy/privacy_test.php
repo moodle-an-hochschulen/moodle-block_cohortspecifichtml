@@ -26,6 +26,7 @@
 namespace block_cohortspecifichtml\privacy;
 
 use core_privacy\local\request\approved_contextlist;
+use core_privacy\local\request\approved_userlist;
 
 /**
  * Unit tests for the implementation of the privacy API.
@@ -360,5 +361,105 @@ class privacy_test extends \core_privacy\tests\provider_testcase {
         foreach ($contextlist as $context) {
             $this->assertTrue(isset($contexts[$context->id]));
         }
+    }
+
+    /**
+     * Test that only users with a user context Text (on cohorts) block are fetched.
+     *
+     * This test does not test a particular class or function.
+     * It is adopted from block_html and does not have a coverage tag there either. Thus, we set coversNothing.
+     * @coversNothing
+     */
+    public function test_get_users_in_context() {
+        $this->resetAfterTest();
+
+        $component = 'block_cohortspecifichtml';
+        $title = 'Block title';
+        $content = 'Block content';
+        $blockformat = FORMAT_PLAIN;
+
+        // Create a user with a user context Text (on cohorts) block.
+        $user1 = $this->getDataGenerator()->create_user();
+        $this->setUser($user1);
+
+        $userblock = $this->create_user_block($title, $content, $blockformat);
+        $usercontext = \context_block::instance($userblock->instance->id);
+
+        // Create a user with a course context Text (on cohorts) block.
+        $user2 = $this->getDataGenerator()->create_user();
+        $this->setUser($user2);
+
+        $course = $this->getDataGenerator()->create_course();
+        $courseblock = $this->create_course_block($course, $title, $content, $blockformat);
+        $coursecontext = \context_block::instance($courseblock->instance->id);
+
+        // Ensure only the user with a user context Text (on cohorts) block is returned.
+        $userlist = new \core_privacy\local\request\userlist($usercontext, $component);
+        \block_cohortspecifichtml\privacy\provider::get_users_in_context($userlist);
+
+        $this->assertCount(1, $userlist);
+
+        $expected = [$user1->id];
+        $actual = $userlist->get_userids();
+
+        $this->assertEquals($expected, $actual);
+
+        // Ensure passing the course context returns no users.
+        $userlist = new \core_privacy\local\request\userlist($coursecontext, $component);
+        \mod_forum\privacy\provider::get_users_in_context($userlist);
+        $this->assertEmpty($userlist);
+    }
+
+    /**
+     * Test that data for users in approved userlist is deleted.
+     *
+     * This test does not test a particular class or function.
+     * It is adopted from block_html and does not have a coverage tag there either. Thus, we set coversNothing.
+     * @coversNothing
+     */
+    public function test_delete_data_for_users() {
+        $this->resetAfterTest();
+
+        $component = 'block_cohortspecifichtml';
+        $title = 'Block title';
+        $content = 'Block content';
+        $blockformat = FORMAT_PLAIN;
+
+        // Create 2 user swith a user context Text (on cohorts) blocks.
+        $user1 = $this->getDataGenerator()->create_user();
+        $this->setUser($user1);
+
+        $block1 = $this->create_user_block($title, $content, $blockformat);
+        $context1 = \context_block::instance($block1->instance->id);
+
+        $user2 = $this->getDataGenerator()->create_user();
+        $this->setUser($user2);
+        $block2 = $this->create_user_block($title, $content, $blockformat);
+        $context2 = \context_block::instance($block2->instance->id);
+
+        // Create and populate the userlists.
+        $userlist1 = new \core_privacy\local\request\userlist($context1, $component);
+        \block_cohortspecifichtml\privacy\provider::get_users_in_context($userlist1);
+        $userlist2 = new \core_privacy\local\request\userlist($context2, $component);
+        \block_cohortspecifichtml\privacy\provider::get_users_in_context($userlist2);
+
+        // Ensure both members are included.
+        $this->assertCount(1, $userlist1);
+        $this->assertCount(1, $userlist2);
+
+        // Convert $userlist1 into an approved_contextlist.
+        $approvedlist = new approved_userlist($context1, 'block_cohortspecifichtml', $userlist1->get_userids());
+
+        // Delete using delete_data_for_user.
+        provider::delete_data_for_users($approvedlist);
+
+        // Re-fetch users in the contexts - only the first one should now be empty.
+        $userlist1 = new \core_privacy\local\request\userlist($context1, $component);
+        \block_cohortspecifichtml\privacy\provider::get_users_in_context($userlist1);
+        $this->assertCount(0, $userlist1);
+
+        $userlist2 = new \core_privacy\local\request\userlist($context2, $component);
+        \block_cohortspecifichtml\privacy\provider::get_users_in_context($userlist2);
+        $this->assertCount(1, $userlist2);
     }
 }
