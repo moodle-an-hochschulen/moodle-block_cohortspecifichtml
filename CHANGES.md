@@ -6,6 +6,7 @@ Changes
 
 ### Unreleased
 
+* 2023-10-23 - Adopt Moodle core change in block_html from MDL-76577
 * 2023-10-22 - Adopt additional privacy PHPUnit tests from block_html
 
 ### v4.1-r2
