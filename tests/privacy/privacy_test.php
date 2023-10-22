@@ -188,6 +188,7 @@ class privacy_test extends \core_privacy\tests\provider_testcase {
 
         // Export the data.
         $this->export_context_data_for_user($user->id, $context, 'block_cohortspecifichtml');
+        /** @var \core_privacy\tests\request\content_writer $writer */
         $writer = \core_privacy\local\request\writer::with_context($context);
         $this->assertTrue($writer->has_any_data());
 
@@ -240,6 +241,7 @@ class privacy_test extends \core_privacy\tests\provider_testcase {
 
         // Export the data.
         $this->export_context_data_for_user($user->id, $context, 'block_cohortspecifichtml');
+        /** @var \core_privacy\tests\request\content_writer $writer */
         $writer = \core_privacy\local\request\writer::with_context($context);
         $this->assertFalse($writer->has_any_data());
     }
