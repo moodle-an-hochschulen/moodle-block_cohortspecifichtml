@@ -39,8 +39,7 @@ Feature: Text (on cohorts) blocks in a course with several cohort restrictions
   Scenario: Adding Text (on cohorts) block in a course and restrict visibility to cohort "1-2"
     When I log in as "teacher1"
     And I am on "Course 1" course homepage with editing mode on
-    And I add the "Text (on cohorts)" block
-    And I configure the "New Text (on cohorts)" block
+    And I add the "Text (on cohorts)..." block
     And I set the field "Content" to "Cohort 1-2 content"
     And I set the field "Text block title" to "Cohort 1-2 header"
     And I set the field "id_config_cohorts" to "1-2"
@@ -58,8 +57,7 @@ Feature: Text (on cohorts) blocks in a course with several cohort restrictions
   Scenario: Adding Text (on cohorts) block in a course and restrict visibility to cohort "3-4"
     When I log in as "teacher1"
     And I am on "Course 1" course homepage with editing mode on
-    And I add the "Text (on cohorts)" block
-    And I configure the "New Text (on cohorts)" block
+    And I add the "Text (on cohorts)..." block
     And I set the field "Content" to "Cohort 3-4 content"
     And I set the field "Text block title" to "Cohort 3-4 header"
     And I set the field "id_config_cohorts" to "3-4"
@@ -77,8 +75,7 @@ Feature: Text (on cohorts) blocks in a course with several cohort restrictions
   Scenario: Adding Text (on cohorts) block in a course and restrict visibility to multiple cohorts
     When I log in as "teacher1"
     And I am on "Course 1" course homepage with editing mode on
-    And I add the "Text (on cohorts)" block
-    And I configure the "New Text (on cohorts)" block
+    And I add the "Text (on cohorts)..." block
     And I set the field "Content" to "Cohort 1-4 content"
     And I set the field "Text block title" to "Cohort 1-4 header"
     And I set the field "id_config_cohorts" to "1-2, 3-4"
@@ -96,8 +93,7 @@ Feature: Text (on cohorts) blocks in a course with several cohort restrictions
   Scenario: Adding Text (on cohorts) block in a course, select no cohorts and invert the selection
     When I log in as "teacher1"
     And I am on "Course 1" course homepage with editing mode on
-    And I add the "Text (on cohorts)" block
-    And I configure the "New Text (on cohorts)" block
+    And I add the "Text (on cohorts)..." block
     And I set the field "Content" to "Cohort (none) inverted content"
     And I set the field "Text block title" to "Cohort (none) inverted header"
     And I set the field "config_invertcohortselection" to "1"
@@ -115,8 +111,7 @@ Feature: Text (on cohorts) blocks in a course with several cohort restrictions
   Scenario: Adding Text (on cohorts) block in a course, select cohort "1-2" and invert the selection
     When I log in as "teacher1"
     And I am on "Course 1" course homepage with editing mode on
-    And I add the "Text (on cohorts)" block
-    And I configure the "New Text (on cohorts)" block
+    And I add the "Text (on cohorts)..." block
     And I set the field "Content" to "Cohort 1-2 inverted content"
     And I set the field "Text block title" to "Cohort 1-2 inverted header"
     And I set the field "id_config_cohorts" to "1-2"
@@ -135,8 +130,7 @@ Feature: Text (on cohorts) blocks in a course with several cohort restrictions
   Scenario: Adding Text (on cohorts) block in a course, select cohorts "1-2" and "3-4" and invert the selection
     When I log in as "teacher1"
     And I am on "Course 1" course homepage with editing mode on
-    And I add the "Text (on cohorts)" block
-    And I configure the "New Text (on cohorts)" block
+    And I add the "Text (on cohorts)..." block
     And I set the field "Content" to "Cohort 1-4 inverted content"
     And I set the field "Text block title" to "Cohort 1-4 inverted header"
     And I set the field "id_config_cohorts" to "1-2, 3-4"
@@ -160,8 +154,7 @@ Feature: Text (on cohorts) blocks in a course with several cohort restrictions
     And I log out
     And I log in as "teacher1"
     And I am on "Course 1" course homepage with editing mode on
-    And I add the "Text (on cohorts)" block
-    And I configure the "New Text (on cohorts)" block
+    And I add the "Text (on cohorts)..." block
     And I set the field "Content" to "Cohort 1-2 content"
     And I set the field "Text block title" to "Cohort 1-2 header"
     And I set the field "id_config_cohorts" to "1-2"
@@ -178,8 +171,7 @@ Feature: Text (on cohorts) blocks in a course with several cohort restrictions
     And I log out
     And I log in as "teacher1"
     And I am on "Course 1" course homepage with editing mode on
-    And I add the "Text (on cohorts)" block
-    And I configure the "New Text (on cohorts)" block
+    And I add the "Text (on cohorts)..." block
     And I set the field "Content" to "Cohort 1-2 inverted content"
     And I set the field "Text block title" to "Cohort 1-2 inverted header"
     And I set the field "id_config_cohorts" to "1-2"
@@ -197,8 +189,7 @@ Feature: Text (on cohorts) blocks in a course with several cohort restrictions
     And I log out
     And I log in as "teacher1"
     And I am on "Course 1" course homepage with editing mode on
-    And I add the "Text (on cohorts)" block
-    And I configure the "New Text (on cohorts)" block
+    And I add the "Text (on cohorts)..." block
     And I set the field "Content" to "No cohort inverted content"
     And I set the field "Text block title" to "No cohort inverted header"
     And I set the field "config_invertcohortselection" to "1"
@@ -215,8 +206,7 @@ Feature: Text (on cohorts) blocks in a course with several cohort restrictions
     And I log out
     And I log in as "teacher1"
     And I am on "Course 1" course homepage with editing mode on
-    And I add the "Text (on cohorts)" block
-    And I configure the "New Text (on cohorts)" block
+    And I add the "Text (on cohorts)..." block
     And I set the field "Content" to "No cohort content"
     And I set the field "Text block title" to "No cohort header"
     And I press "Save changes"
@@ -232,8 +222,7 @@ Feature: Text (on cohorts) blocks in a course with several cohort restrictions
     And I log out
     And I log in as "teacher1"
     And I am on "Course 1" course homepage with editing mode on
-    And I add the "Text (on cohorts)" block
-    And I configure the "New Text (on cohorts)" block
+    And I add the "Text (on cohorts)..." block
     And I set the field "Content" to "Cohort 1-2 content"
     And I set the field "Text block title" to "Cohort 1-2 header"
     And I set the field "id_config_cohorts" to "1-2"
@@ -252,8 +241,7 @@ Feature: Text (on cohorts) blocks in a course with several cohort restrictions
     And I log out
     And I log in as "teacher1"
     And I am on "Course 1" course homepage with editing mode on
-    And I add the "Text (on cohorts)" block
-    And I configure the "New Text (on cohorts)" block
+    And I add the "Text (on cohorts)..." block
     And I set the field "Content" to "Cohort Teacher content"
     And I set the field "Text block title" to "Cohort Teacher header"
     And I set the field "id_config_cohorts" to "teacher"
