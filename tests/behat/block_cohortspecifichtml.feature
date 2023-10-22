@@ -34,8 +34,7 @@ Feature: Adding and configuring Text (on cohorts) blocks
     # from adding a block right away.
     # Thus, we proceed to course index which is problem-free.
     And I am on course index
-    And I add the "Text (on cohorts)" block
-    And I configure the "New Text (on cohorts)" block
+    And I add the "Text (on cohorts)..." block
     And I set the field "Content" to "Static text without a header"
     And I press "Save changes"
     Then I should not see "New Text (on cohorts)"

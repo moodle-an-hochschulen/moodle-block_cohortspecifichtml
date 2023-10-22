@@ -19,8 +19,7 @@ Feature: Text (on cohorts) blocks in a course
       | student1 | C1     | student        |
     When I log in as "teacher1"
     And I am on "Course 1" course homepage with editing mode on
-    And I add the "Text (on cohorts)" block
-    And I configure the "New Text (on cohorts)" block
+    And I add the "Text (on cohorts)..." block
     And I set the field "Content" to "First block content"
     And I set the field "Text block title" to "First block header"
     Then I should see "No cohorts are defined yet. Without any cohorts the block will not be visible to anybody, even if you have entered content above."
