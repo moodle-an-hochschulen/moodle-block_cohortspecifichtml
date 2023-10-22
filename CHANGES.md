@@ -4,6 +4,10 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
+### Unreleased
+
+* 2023-10-22 - Adopt additional privacy PHPUnit tests from block_html
+
 ### v4.1-r2
 
 * 2023-10-14 - Add automated release to moodle.org/plugins
