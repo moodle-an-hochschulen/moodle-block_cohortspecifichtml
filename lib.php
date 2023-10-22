@@ -28,7 +28,7 @@
  *
  * @param stdClass $course course object
  * @param stdClass $birecordorcm block instance record
- * @param stdClass $context context object
+ * @param context $context context object
  * @param string $filearea file area
  * @param array $args extra arguments
  * @param bool $forcedownload whether or not force download
