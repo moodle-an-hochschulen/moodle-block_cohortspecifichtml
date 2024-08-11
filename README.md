@@ -63,6 +63,12 @@ Text (on cohorts) blocks are always visible to the capability owners independent
 As an admin, you might want to add this capability to the teacher role to let teachers see all the Text (on cohort) block contents independently from the editing state of the course.
 
 
+Scheduled Tasks
+---------------
+
+This plugin does not add any additional scheduled tasks.
+
+
 Theme support
 -------------
 
