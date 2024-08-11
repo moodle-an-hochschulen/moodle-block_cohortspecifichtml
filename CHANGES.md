@@ -4,6 +4,10 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
+### Unreleased
+
+* 2024-08-11 - Updated Moodle Plugin CI to latest upstream recommendations
+
 ### v4.2-r2
 
 * 2023-10-23 - Adopt Moodle core change in block_html from MDL-77164
