@@ -22,15 +22,16 @@ namespace block_cohortspecifichtml;
  * @package    block_cohortspecifichtml
  * @copyright  2023 Alexander Bias <bias@alexanderbias.de>
  *             based on code from 2022 Open LMS (https://www.openlms.net/) Petr Skoda
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
  * @coversDefaultClass \block_cohortspecifichtml
  */
-class block_cohortspecifichtml_test extends \advanced_testcase {
+final class block_cohortspecifichtml_test extends \advanced_testcase {
     /**
      * Tests instance files copying.
      * @covers ::instance_copy
      */
-    public function test_instance_copy() {
+    public function test_instance_copy(): void {
         global $USER;
         $this->resetAfterTest();
 
