@@ -22,34 +22,25 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
-$string['pluginname'] = 'Text (on cohorts)';
-
-// Capabilities.
+$string['cohortselection'] = 'Show to cohorts';
+$string['cohortselection_help'] = 'The block will be only shown to the members of at least one selected cohort. This means that if you selected, for example, two cohorts and a user is only member of one of them, the block will be displayed to him as he is part of at least one selected cohort. This is equivalent to an OR connection.';
 $string['cohortspecifichtml:addinstance'] = 'Add a new Text (on cohorts) block';
 $string['cohortspecifichtml:myaddinstance'] = 'Add a new Text (on cohorts) block to Dashboard';
 $string['cohortspecifichtml:viewalways'] = 'Always view the block';
-
-// Settings.
-$string['newhtmlcohortblock'] = 'New Text (on cohorts)';
-$string['cohortselection'] = 'Show to cohorts';
-$string['cohortselection_help'] = 'The block will be only shown to the members of at least one selected cohort. This means that if you selected, for example, two cohorts and a user is only member of one of them, the block will be displayed to him as he is part of at least one selected cohort. This is equivalent to an OR connection.';
-$string['nocohorts'] = 'No cohorts are defined yet. Without any cohorts <strong>the block will not be visible</strong> to anybody, even if you have entered content above. <br/>
-Cohorts can be managed in the <a href="{$a->url}">site administration</a>.';
 $string['invertcohortselection'] = 'Invert the selection (hide it for the selected cohorts)';
 $string['invertcohortselection_help'] = 'With this setting you can invert your selection. This means that the block will not be shown to members of the selected cohort but to everyone else.<br/>
 Examples: <ul> <li>If a user matches at least one of the selected cohorts the block will not be displayed to him, even if he is also member of a cohort that is not selected.</li>
 <li>If you have selected none of the cohorts and invert that, the block will be visible for <strong>all</strong> users.</li></ul>';
+$string['newhtmlcohortblock'] = 'New Text (on cohorts)';
+$string['nocohorts'] = 'No cohorts are defined yet. Without any cohorts <strong>the block will not be visible</strong> to anybody, even if you have entered content above. <br/>
+Cohorts can be managed in the <a href="{$a->url}">site administration</a>.';
+$string['notvisibletoall'] = '<br/>This block is <strong>not visible</strong> to <strong>any</strong> user.';
+$string['notvisibletocohorts'] = '<br/><strong>Not</strong> visible to cohorts:';
+$string['pluginname'] = 'Text (on cohorts)';
+$string['privacy:metadata:block'] = 'The Text (on cohorts) block stores all of its data within the block subsystem.';
 $string['resetcohortselection'] = 'Reset selection';
 $string['resetcohortselection_help'] = 'If you enable and save this setting, the selection you made will be reset. This means that no cohorts are selected. Unfortunately, this workaround is needed, because unselecting all cohorts would not result in any change as an empty result is passed to the server. <br/>
 If you open the block configuration again this setting is reset and won\'t be shown as there is nothing that could be reset anymore.';
-
-// Badges / Information.
-$string['notvisibletocohorts'] = '<br/><strong>Not</strong> visible to cohorts:';
-$string['notvisibletoall'] = '<br/>This block is <strong>not visible</strong> to <strong>any</strong> user.';
 $string['unrestricted'] = 'Unrestricted';
-$string['visibletocohorts'] = '<br/><strong>Only</strong> visible to cohorts:';
 $string['visibletoall'] = '<br/>This block is <strong>visible</strong> to <strong>all</strong> users.';
-
-// Privacy.
-$string['privacy:metadata:block'] = 'The Text (on cohorts) block stores all of its data within the block subsystem.';
+$string['visibletocohorts'] = '<br/><strong>Only</strong> visible to cohorts:';

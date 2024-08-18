@@ -36,7 +36,7 @@ use core_privacy\local\request\approved_userlist;
  *             based on code from 2018 Andrew Nicols <andrew@nicols.co.uk>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class privacy_test extends \core_privacy\tests\provider_testcase {
+final class privacy_test extends \core_privacy\tests\provider_testcase {
     /**
      * Get the list of standard format options for comparison.
      *
@@ -166,7 +166,7 @@ class privacy_test extends \core_privacy\tests\provider_testcase {
      * It is adopted from block_html and does not have a coverage tag there either. Thus, we set coversNothing.
      * @coversNothing
      */
-    public function test_user_block() {
+    public function test_user_block(): void {
         $this->resetAfterTest();
 
         $title = 'Example title';
@@ -213,7 +213,7 @@ class privacy_test extends \core_privacy\tests\provider_testcase {
      * It is adopted from block_html and does not have a coverage tag there either. Thus, we set coversNothing.
      * @coversNothing
      */
-    public function test_user_block_unconfigured() {
+    public function test_user_block_unconfigured(): void {
         global $DB;
 
         $this->resetAfterTest();
@@ -253,7 +253,7 @@ class privacy_test extends \core_privacy\tests\provider_testcase {
      * It is adopted from block_html and does not have a coverage tag there either. Thus, we set coversNothing.
      * @coversNothing
      */
-    public function test_user_multiple_blocks_exported() {
+    public function test_user_multiple_blocks_exported(): void {
         $this->resetAfterTest();
 
         $title = 'Example title';
@@ -301,7 +301,7 @@ class privacy_test extends \core_privacy\tests\provider_testcase {
      * It is adopted from block_html and does not have a coverage tag there either. Thus, we set coversNothing.
      * @coversNothing
      */
-    public function test_course_blocks_not_exported() {
+    public function test_course_blocks_not_exported(): void {
         $this->resetAfterTest();
 
         $title = 'Example title';
@@ -330,7 +330,7 @@ class privacy_test extends \core_privacy\tests\provider_testcase {
      * It is adopted from block_html and does not have a coverage tag there either. Thus, we set coversNothing.
      * @coversNothing
      */
-    public function test_mixed_multiple_blocks_exported() {
+    public function test_mixed_multiple_blocks_exported(): void {
         $this->resetAfterTest();
 
         $title = 'Example title';
@@ -372,7 +372,7 @@ class privacy_test extends \core_privacy\tests\provider_testcase {
      * It is adopted from block_html and does not have a coverage tag there either. Thus, we set coversNothing.
      * @coversNothing
      */
-    public function test_get_users_in_context() {
+    public function test_get_users_in_context(): void {
         $this->resetAfterTest();
 
         $component = 'block_cohortspecifichtml';
@@ -419,7 +419,7 @@ class privacy_test extends \core_privacy\tests\provider_testcase {
      * It is adopted from block_html and does not have a coverage tag there either. Thus, we set coversNothing.
      * @coversNothing
      */
-    public function test_delete_data_for_users() {
+    public function test_delete_data_for_users(): void {
         $this->resetAfterTest();
 
         $component = 'block_cohortspecifichtml';
