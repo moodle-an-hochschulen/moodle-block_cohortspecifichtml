@@ -6,6 +6,7 @@ Changes
 
 ### Unreleased
 
+* 2024-08-20 - Revert backports of MDL-76583 and MDL-74465 which were backported by mistake from 4.2 in v4.1-r3.
 * 2024-08-11 - Add section for scheduled tasks to README
 * 2024-08-11 - Updated Moodle Plugin CI to latest upstream recommendations
 

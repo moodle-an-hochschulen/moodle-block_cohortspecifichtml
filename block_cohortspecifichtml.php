@@ -22,8 +22,6 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use core_external\util as external_util;
-
 /**
  * Form for editing Text block (on cohorts) instances.
  * @package   block_cohortspecifichtml
@@ -161,6 +159,7 @@ class block_cohortspecifichtml extends block_base {
      */
     public function get_content_for_external($output) {
         global $CFG;
+        require_once($CFG->libdir . '/externallib.php');
         require_once($CFG->libdir . '/filelib.php');
         require_once($CFG->dirroot . '/cohort/lib.php');
         require_once($CFG->dirroot . '/blocks/cohortspecifichtml/locallib.php');
@@ -192,15 +191,9 @@ class block_cohortspecifichtml extends block_base {
                 if (isset($this->config->format)) {
                     $format = $this->config->format;
                 }
-                [$bc->content, $bc->contentformat] = \core_external\util::format_text(
-                    $this->config->text,
-                    $format,
-                    $this->context,
-                    'block_cohortspecifichtml',
-                    'content',
-                    null,
-                    $filteropt
-                );
+                list($bc->content, $bc->contentformat) =
+                    external_format_text($this->config->text, $format, $this->context, 'block_cohortspecifichtml',
+                        'content', null, $filteropt);
                 $bc->files = external_util::get_area_files($this->context->id, 'block_cohortspecifichtml',
                     'content', false, false);
             }
