@@ -205,12 +205,12 @@ function block_cohortspecifichtml_get_restrictioninfo($blockinstance) {
         if (!empty($configedcohorts)) {
             if ($invertselection != 1) {
                 $info .= html_writer::tag('span', get_string('restricted', 'moodle'),
-                    ['class' => 'badge badge-info']);
+                    ['class' => 'badge bg-info text-light']);
                 $info .= html_writer::tag('span', get_string('visibletocohorts',
                     'block_cohortspecifichtml'), ['class' => 'small']);
             } else {
                 $info .= html_writer::tag('span', get_string('restricted', 'moodle'),
-                    ['class' => 'badge badge-info']);
+                    ['class' => 'badge bg-info text-light']);
                 $info .= html_writer::tag('span', get_string('notvisibletocohorts',
                     'block_cohortspecifichtml'), ['class' => 'small']);
             }
@@ -221,13 +221,13 @@ function block_cohortspecifichtml_get_restrictioninfo($blockinstance) {
         } else {
             if ($invertselection != 1) {
                 $info .= html_writer::tag('span', get_string('restricted', 'moodle'),
-                    ['class' => 'badge badge-info']);
+                    ['class' => 'badge bg-info text-light']);
                 $info .= html_writer::tag('span', get_string('notvisibletoall',
                     'block_cohortspecifichtml'), ['class' => 'small']);
                 $info .= html_writer::tag('hr', null);
             } else {
                 $info .= html_writer::tag('span', get_string('unrestricted',
-                    'block_cohortspecifichtml'), ['class' => 'badge badge-info']);
+                    'block_cohortspecifichtml'), ['class' => 'badge bg-info text-light']);
                 $info .= html_writer::tag('span', get_string('visibletoall',
                     'block_cohortspecifichtml'), ['class' => 'small']);
                 $info .= html_writer::tag('hr', null);
