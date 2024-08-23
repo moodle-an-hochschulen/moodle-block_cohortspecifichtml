@@ -9,7 +9,7 @@ This Text block provides the possibility to selectively display the block to mem
 Requirements
 ------------
 
-This plugin requires Moodle 4.3+
+This plugin requires Moodle 4.4+
 
 
 Motivation for this plugin
