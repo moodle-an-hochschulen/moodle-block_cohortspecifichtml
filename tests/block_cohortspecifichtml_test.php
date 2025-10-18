@@ -44,14 +44,14 @@ final class block_cohortspecifichtml_test extends \advanced_testcase {
         $fs = get_file_storage();
         $usercontext = \context_user::instance($USER->id);
         $fs->create_file_from_string(
-                ['component' => 'user',
+            ['component' => 'user',
                         'filearea' => 'draft',
                         'contextid' => $usercontext->id,
                         'itemid' => $itemid,
                         'filepath' => '/',
                         'filename' => 'file.txt',
                 ],
-                'File content'
+            'File content'
         );
         $data = (object)[
                 'title' => 'Block title',
@@ -62,17 +62,35 @@ final class block_cohortspecifichtml_test extends \advanced_testcase {
                 ],
         ];
         $block1->instance_config_save($data);
-        $this->assertTrue($fs->file_exists($block1->context->id, 'block_cohortspecifichtml', 'content', 0, '/',
-                'file.txt'));
+        $this->assertTrue($fs->file_exists(
+            $block1->context->id,
+            'block_cohortspecifichtml',
+            'content',
+            0,
+            '/',
+            'file.txt'
+        ));
 
         $block2 = $this->create_block($course);
-        $this->assertFalse($fs->file_exists($block2->context->id, 'block_cohortspecifichtml', 'content', 0, '/',
-                'file.txt'));
+        $this->assertFalse($fs->file_exists(
+            $block2->context->id,
+            'block_cohortspecifichtml',
+            'content',
+            0,
+            '/',
+            'file.txt'
+        ));
 
         $this->setUser(null);
         $block2->instance_copy($block1->instance->id);
-        $this->assertTrue($fs->file_exists($block2->context->id, 'block_cohortspecifichtml', 'content', 0, '/',
-                'file.txt'));
+        $this->assertTrue($fs->file_exists(
+            $block2->context->id,
+            'block_cohortspecifichtml',
+            'content',
+            0,
+            '/',
+            'file.txt'
+        ));
     }
 
     /**

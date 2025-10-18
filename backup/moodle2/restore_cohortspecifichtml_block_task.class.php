@@ -25,6 +25,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+// phpcs:disable PSR1.Classes.ClassDeclaration.MultipleClasses
+
 /**
  * Specialised restore task for the cohortspecifichtml block (requires encode_content_links in some configdata attrs)
  * @package    block_cohortspecifichtml
@@ -34,7 +36,6 @@ defined('MOODLE_INTERNAL') || die();
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class restore_cohortspecifichtml_block_task extends restore_block_task {
-
     /**
      * Define (add) particular settings this block can have.
      */
@@ -101,7 +102,6 @@ class restore_cohortspecifichtml_block_task extends restore_block_task {
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class restore_cohortspecifichtml_block_decode_content extends restore_decode_content {
-
     /**
      * @var object $configdata
      */
