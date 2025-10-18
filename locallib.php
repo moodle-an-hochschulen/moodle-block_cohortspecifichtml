@@ -68,7 +68,7 @@ function block_cohortspecifichtml_cohorts_is_member($userid, $cohorts) {
 
     if (!empty($cohorts)) {
         // Create IN statement for cohorts.
-        list($in, $params) = $DB->get_in_or_equal($cohorts);
+        [$in, $params] = $DB->get_in_or_equal($cohorts);
         // Add param for userid.
         $params[] = $userid;
         // Return true if "userid = " . $userid . " AND cohortid IN " . $cohorts.
@@ -191,8 +191,10 @@ function block_cohortspecifichtml_get_caneditandediton($blockinstance) {
  */
 function block_cohortspecifichtml_get_restrictioninfo($blockinstance) {
     // Initialise variable to check if a user should see the block independently from cohort memberships.
-    $viewalways = has_capability('block/cohortspecifichtml:viewalways',
-        context_block::instance($blockinstance->instance->id));
+    $viewalways = has_capability(
+        'block/cohortspecifichtml:viewalways',
+        context_block::instance($blockinstance->instance->id)
+    );
 
     // Get the configured cohorts.
     $configedcohorts = block_cohortspecifichtml_get_configedcohorts($blockinstance);
@@ -206,15 +208,25 @@ function block_cohortspecifichtml_get_restrictioninfo($blockinstance) {
     if ($viewalways == true || block_cohortspecifichtml_get_caneditandediton($blockinstance)) {
         if (!empty($configedcohorts)) {
             if ($invertselection != 1) {
-                $info .= html_writer::tag('span', get_string('restricted', 'moodle'),
-                    ['class' => 'badge bg-info text-light']);
-                $info .= html_writer::tag('span', get_string('visibletocohorts',
-                    'block_cohortspecifichtml'), ['class' => 'small']);
+                $info .= html_writer::tag(
+                    'span',
+                    get_string('restricted', 'moodle'),
+                    ['class' => 'badge bg-info text-light']
+                );
+                $info .= html_writer::tag('span', get_string(
+                    'visibletocohorts',
+                    'block_cohortspecifichtml'
+                ), ['class' => 'small']);
             } else {
-                $info .= html_writer::tag('span', get_string('restricted', 'moodle'),
-                    ['class' => 'badge bg-info text-light']);
-                $info .= html_writer::tag('span', get_string('notvisibletocohorts',
-                    'block_cohortspecifichtml'), ['class' => 'small']);
+                $info .= html_writer::tag(
+                    'span',
+                    get_string('restricted', 'moodle'),
+                    ['class' => 'badge bg-info text-light']
+                );
+                $info .= html_writer::tag('span', get_string(
+                    'notvisibletocohorts',
+                    'block_cohortspecifichtml'
+                ), ['class' => 'small']);
             }
             $cohorts = block_cohortspecifichtml_get_cohort_names($configedcohorts);
             // Only show the list with restricted cohorts if at least one cohort is selected.
@@ -222,16 +234,25 @@ function block_cohortspecifichtml_get_restrictioninfo($blockinstance) {
             $info .= html_writer::tag('hr', null);
         } else {
             if ($invertselection != 1) {
-                $info .= html_writer::tag('span', get_string('restricted', 'moodle'),
-                    ['class' => 'badge bg-info text-light']);
-                $info .= html_writer::tag('span', get_string('notvisibletoall',
-                    'block_cohortspecifichtml'), ['class' => 'small']);
+                $info .= html_writer::tag(
+                    'span',
+                    get_string('restricted', 'moodle'),
+                    ['class' => 'badge bg-info text-light']
+                );
+                $info .= html_writer::tag('span', get_string(
+                    'notvisibletoall',
+                    'block_cohortspecifichtml'
+                ), ['class' => 'small']);
                 $info .= html_writer::tag('hr', null);
             } else {
-                $info .= html_writer::tag('span', get_string('unrestricted',
-                    'block_cohortspecifichtml'), ['class' => 'badge bg-info text-light']);
-                $info .= html_writer::tag('span', get_string('visibletoall',
-                    'block_cohortspecifichtml'), ['class' => 'small']);
+                $info .= html_writer::tag('span', get_string(
+                    'unrestricted',
+                    'block_cohortspecifichtml'
+                ), ['class' => 'badge bg-info text-light']);
+                $info .= html_writer::tag('span', get_string(
+                    'visibletoall',
+                    'block_cohortspecifichtml'
+                ), ['class' => 'small']);
                 $info .= html_writer::tag('hr', null);
             }
         }

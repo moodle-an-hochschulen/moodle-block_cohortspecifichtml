@@ -31,7 +31,6 @@ use core_external\util as external_util;
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class block_cohortspecifichtml extends block_base {
-
     /**
      * Core function used to initialize the block.
      */
@@ -68,16 +67,20 @@ class block_cohortspecifichtml extends block_base {
         // If a block title is set.
         if (isset($this->config->title)) {
             // Show this title to all users that should see the block or who are allowed to edit the block and are in editing mode.
-            if (block_cohortspecifichtml_show_block($this) ||
-                    block_cohortspecifichtml_get_caneditandediton($this)) {
+            if (
+                block_cohortspecifichtml_show_block($this) ||
+                    block_cohortspecifichtml_get_caneditandediton($this)
+            ) {
                 $this->title = $this->title = format_string($this->config->title, true, ['context' => $this->context]);
             } else {
                 // Do not show a title.
                 $this->title = '';
             }
         } else {
-            if (block_cohortspecifichtml_show_block($this) ||
-                block_cohortspecifichtml_get_caneditandediton($this)) {
+            if (
+                block_cohortspecifichtml_show_block($this) ||
+                block_cohortspecifichtml_get_caneditandediton($this)
+            ) {
                 // Show the default title.
                 $this->title = get_string('newhtmlcohortblock', 'block_cohortspecifichtml');
             } else {
@@ -112,25 +115,31 @@ class block_cohortspecifichtml extends block_base {
             return $this->content;
         }
 
-        $filteropt = new stdClass;
+        $filteropt = new stdClass();
         $filteropt->overflowdiv = true;
         if ($this->content_is_trusted()) {
             // Fancy html allowed only on course, category and system blocks.
             $filteropt->noclean = true;
         }
 
-        $this->content = new stdClass;
+        $this->content = new stdClass();
         $this->content->footer = '';
 
         if (isset($this->config->text)) {
-
             // Show the block to the users that should see the block.
-            if (block_cohortspecifichtml_show_block($this) == true ||
-                block_cohortspecifichtml_get_caneditandediton($this) == true) {
-
+            if (
+                block_cohortspecifichtml_show_block($this) == true ||
+                block_cohortspecifichtml_get_caneditandediton($this) == true
+            ) {
                 // Rewrite url.
-                $this->config->text = file_rewrite_pluginfile_urls($this->config->text, 'pluginfile.php', $this->context->id,
-                    'block_cohortspecifichtml', 'content', null);
+                $this->config->text = file_rewrite_pluginfile_urls(
+                    $this->config->text,
+                    'pluginfile.php',
+                    $this->context->id,
+                    'block_cohortspecifichtml',
+                    'content',
+                    null
+                );
                 // Default to FORMAT_HTML which is what will have been used before the editor was properly
                 // implemented for the block.
                 $format = FORMAT_HTML;
@@ -165,7 +174,7 @@ class block_cohortspecifichtml extends block_base {
         require_once($CFG->dirroot . '/cohort/lib.php');
         require_once($CFG->dirroot . '/blocks/cohortspecifichtml/locallib.php');
 
-        $bc = new stdClass;
+        $bc = new stdClass();
         $bc->title = null;
         $bc->content = '';
         $bc->contenformat = FORMAT_MOODLE;
@@ -173,15 +182,16 @@ class block_cohortspecifichtml extends block_base {
         $bc->files = [];
 
         // Show the block to the users that should see the block.
-        if (block_cohortspecifichtml_show_block($this) == true ||
-            block_cohortspecifichtml_get_caneditandediton($this) == true) {
-
+        if (
+            block_cohortspecifichtml_show_block($this) == true ||
+            block_cohortspecifichtml_get_caneditandediton($this) == true
+        ) {
             if (!$this->hide_header()) {
                 $bc->title = $this->title;
             }
 
             if (isset($this->config->text)) {
-                $filteropt = new stdClass;
+                $filteropt = new stdClass();
                 if ($this->content_is_trusted()) {
                     // Fancy html allowed only on course, category and system blocks.
                     $filteropt->noclean = true;
@@ -201,8 +211,13 @@ class block_cohortspecifichtml extends block_base {
                     null,
                     $filteropt
                 );
-                $bc->files = external_util::get_area_files($this->context->id, 'block_cohortspecifichtml',
-                    'content', false, false);
+                $bc->files = external_util::get_area_files(
+                    $this->context->id,
+                    'block_cohortspecifichtml',
+                    'content',
+                    false,
+                    false
+                );
             }
         }
         return $bc;
@@ -216,8 +231,15 @@ class block_cohortspecifichtml extends block_base {
     public function instance_config_save($data, $nolongerused = false) {
         $config = clone($data);
         // Move embedded files into a proper filearea and adjust HTML links to match.
-        $config->text = file_save_draft_area_files($data->text['itemid'], $this->context->id, 'block_cohortspecifichtml',
-            'content', 0, ['subdirs' => true], $data->text['text']);
+        $config->text = file_save_draft_area_files(
+            $data->text['itemid'],
+            $this->context->id,
+            'block_cohortspecifichtml',
+            'content',
+            0,
+            ['subdirs' => true],
+            $data->text['text']
+        );
         $config->format = $data->text['format'];
 
         // We need this, as empty form selections (unselect all cohorts) won't be passed as a value to the server and therefore
@@ -311,7 +333,7 @@ class block_cohortspecifichtml extends block_base {
 
         if (!empty($CFG->block_cohortspecifichtml_allowcssclasses)) {
             if (!empty($this->config->classes)) {
-                $attributes['class'] .= ' '.$this->config->classes;
+                $attributes['class'] .= ' ' . $this->config->classes;
             }
         }
 

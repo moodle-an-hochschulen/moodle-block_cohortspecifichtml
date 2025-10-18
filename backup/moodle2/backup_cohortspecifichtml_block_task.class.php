@@ -32,7 +32,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class backup_cohortspecifichtml_block_task extends backup_block_task {
-
     /**
      * Define (add) particular settings this block can have
      */
@@ -73,4 +72,3 @@ class backup_cohortspecifichtml_block_task extends backup_block_task {
         return $content; // No special encoding of links.
     }
 }
-

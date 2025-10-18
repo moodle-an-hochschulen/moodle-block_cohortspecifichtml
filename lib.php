@@ -36,8 +36,15 @@
  * @return bool
  * @todo MDL-36050 improve capability check on stick blocks, so we can check user capability before sending images.
  */
-function block_cohortspecifichtml_pluginfile($course, $birecordorcm, $context, $filearea, $args,
-        $forcedownload, array $options=[]) {
+function block_cohortspecifichtml_pluginfile(
+    $course,
+    $birecordorcm,
+    $context,
+    $filearea,
+    $args,
+    $forcedownload,
+    array $options = []
+) {
     global $DB, $CFG, $USER;
     require_once($CFG->dirroot . '/blocks/cohortspecifichtml/locallib.php');
 
@@ -72,7 +79,7 @@ function block_cohortspecifichtml_pluginfile($course, $birecordorcm, $context, $
     $fs = get_file_storage();
 
     $filename = array_pop($args);
-    $filepath = $args ? '/'.implode('/', $args).'/' : '/';
+    $filepath = $args ? '/' . implode('/', $args) . '/' : '/';
 
     // The following three lines diverge from the code in block_html which served as blueprint for
     // this function just because of the fact that block_html used 'and' operators which
@@ -84,8 +91,10 @@ function block_cohortspecifichtml_pluginfile($course, $birecordorcm, $context, $
 
     // Check the same cohort conditions for the file. If not valid, do send_file_not_found.
     $instance = block_instance($birecordorcm->blockname, $birecordorcm);
-    if (block_cohortspecifichtml_show_block($instance) != true &&
-            block_cohortspecifichtml_get_caneditandediton($instance) != true) {
+    if (
+        block_cohortspecifichtml_show_block($instance) != true &&
+            block_cohortspecifichtml_get_caneditandediton($instance) != true
+    ) {
         send_file_not_found();
     }
 
@@ -117,7 +126,7 @@ function block_cohortspecifichtml_global_db_replace($search, $replace) {
 
     $instances = $DB->get_recordset('block_instances', ['blockname' => 'cohortspecifichtml']);
     foreach ($instances as $instance) {
-        // TODO: intentionally hardcoded until MDL-26800 is fixed.
+        // In block_html, it says: Intentionally hardcoded until MDL-26800 is fixed.
         $config = unserialize_object(base64_decode($instance->configdata));
         if (isset($config->text) && is_string($config->text)) {
             $config->text = str_replace($search, $replace, $config->text);

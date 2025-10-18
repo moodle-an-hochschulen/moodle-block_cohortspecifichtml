@@ -30,7 +30,6 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class block_cohortspecifichtml_edit_form extends block_edit_form {
-
     /**
      * Create any form fields specific to this type of block.
      * @param object $mform
@@ -51,8 +50,13 @@ class block_cohortspecifichtml_edit_form extends block_edit_form {
 
         // Text area.
         $editoroptions = ['maxfiles' => EDITOR_UNLIMITED_FILES, 'noclean' => true, 'context' => $this->block->context];
-        $mform->addElement('editor', 'config_text', get_string('configcontent', 'block_html'),
-                null, $editoroptions);
+        $mform->addElement(
+            'editor',
+            'config_text',
+            get_string('configcontent', 'block_html'),
+            null,
+            $editoroptions
+        );
         $mform->addRule('config_text', null, 'required', null, 'client');
         $mform->setType('config_text', PARAM_RAW); // XSS is prevented when printing the block contents and serving files.
 
@@ -68,20 +72,36 @@ class block_cohortspecifichtml_edit_form extends block_edit_form {
             // Enable multi selection.
             $mform->getElement('config_cohorts')->setMultiple(true);
             $mform->addHelpButton('config_cohorts', 'cohortselection', 'block_cohortspecifichtml');
-            $mform->addElement('advcheckbox', 'config_invertcohortselection',
-                    get_string('invertcohortselection', 'block_cohortspecifichtml'), '', null, [0, 1]);
+            $mform->addElement(
+                'advcheckbox',
+                'config_invertcohortselection',
+                get_string('invertcohortselection', 'block_cohortspecifichtml'),
+                '',
+                null,
+                [0, 1]
+            );
             $mform->setType('config_invertcohortselection', PARAM_BOOL);
             $mform->addHelpButton('config_invertcohortselection', 'invertcohortselection', 'block_cohortspecifichtml');
             // Only show the setting to reset a cohort selection if there are cohorts selected.
             if (!empty($this->block->config->cohorts)) {
-                $mform->addElement('advcheckbox', 'config_resetcohortselection',
-                        get_string('resetcohortselection', 'block_cohortspecifichtml'), '', null, [0, 1]);
+                $mform->addElement(
+                    'advcheckbox',
+                    'config_resetcohortselection',
+                    get_string('resetcohortselection', 'block_cohortspecifichtml'),
+                    '',
+                    null,
+                    [0, 1]
+                );
                 $mform->addHelpButton('config_resetcohortselection', 'resetcohortselection', 'block_cohortspecifichtml');
             }
         } else {
             // Add a static element with a hint that there are no cohorts existing.
-            $mform->addElement('static', 'nocohorts', get_string('cohorts', 'core_cohort'),
-                    get_string('nocohorts', 'block_cohortspecifichtml', ['url' => $CFG->wwwroot.'/cohort/index.php']));
+            $mform->addElement(
+                'static',
+                'nocohorts',
+                get_string('cohorts', 'core_cohort'),
+                get_string('nocohorts', 'block_cohortspecifichtml', ['url' => $CFG->wwwroot . '/cohort/index.php'])
+            );
         }
 
         if (!empty($CFG->block_cohortspecifichtml_allowcssclasses)) {
@@ -106,8 +126,15 @@ class block_cohortspecifichtml_edit_form extends block_edit_form {
             } else {
                 $currenttext = $text;
             }
-            $defaults->config_text['text'] = file_prepare_draft_area($draftideditor, $this->block->context->id,
-                    'block_cohortspecifichtml', 'content', 0, ['subdirs' => true], $currenttext);
+            $defaults->config_text['text'] = file_prepare_draft_area(
+                $draftideditor,
+                $this->block->context->id,
+                'block_cohortspecifichtml',
+                'content',
+                0,
+                ['subdirs' => true],
+                $currenttext
+            );
             $defaults->config_text['itemid'] = $draftideditor;
             $defaults->config_text['format'] = $this->block->config->format ?? FORMAT_MOODLE;
         } else {
