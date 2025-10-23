@@ -45,7 +45,8 @@ function block_cohortspecifichtml_pluginfile(
     $forcedownload,
     array $options = []
 ) {
-    global $DB, $CFG, $USER;
+    global $CFG;
+    require_once("{$CFG->dirroot}/user/lib.php");
     require_once($CFG->dirroot . '/blocks/cohortspecifichtml/locallib.php');
 
     if ($context->contextlevel != CONTEXT_BLOCK) {
@@ -65,9 +66,12 @@ function block_cohortspecifichtml_pluginfile(
             if (!core_course_category::get($parentcontext->instanceid, IGNORE_MISSING)) {
                 send_file_not_found();
             }
-        } else if ($parentcontext->contextlevel === CONTEXT_USER && $parentcontext->instanceid != $USER->id) {
-            // The block is in the context of a user, it is only visible to the user who it belongs to.
-            send_file_not_found();
+        } else if ($parentcontext->contextlevel === CONTEXT_USER) {
+            $user = core_user::get_user($parentcontext->instanceid, '*', MUST_EXIST);
+            $extracaps = block_method_result('cohortspecifichtml', 'get_extra_capabilities');
+            if (!user_can_view_profile($user, null, $parentcontext) || !has_any_capability($extracaps, $context)) {
+                send_file_not_found();
+            }
         }
         // At this point there is no way to check SYSTEM context, so ignoring it.
     }
