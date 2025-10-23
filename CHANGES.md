@@ -4,7 +4,7 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
-### Unreleased
+### v5.0-r2
 
 * 2025-10-23 - Upstream change: Adopt plugin file service access check changes from block_html in MDL-85037
 * 2025-10-23 - Upstream change: Adopt PHPUnit test changes from block_html in MDL-84611
