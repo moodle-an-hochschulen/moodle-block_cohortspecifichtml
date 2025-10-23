@@ -6,6 +6,7 @@ Changes
 
 ### Unreleased
 
+* 2025-10-23 - Upstream change: Adopt plugin file service access check changes from block_html in MDL-85037
 * 2025-10-23 - Upstream change: Adopt PHPUnit test changes from block_html in MDL-84611
 * 2025-10-15 - Make codechecker happy again
 * 2025-10-15 - Tests: Switch Github actions workflows to reusable workflows by Moodle an Hochschulen e.V.
