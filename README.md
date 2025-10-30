@@ -1,7 +1,7 @@
 moodle-block_cohortspecifichtml
 ===============================
 
-[![Moodle Plugin CI](https://github.com/moodle-an-hochschulen/moodle-block_cohortspecifichtml/actions/workflows/moodle-plugin-ci.yml/badge.svg?branch=main)](https://github.com/moodle-an-hochschulen/moodle-block_cohortspecifichtml/actions?query=workflow%3A%22Moodle+Plugin+CI%22+branch%3Amain)
+[![Moodle Plugin CI](https://github.com/moodle-an-hochschulen/moodle-block_cohortspecifichtml/actions/workflows/moodle-plugin-ci.yml/badge.svg?branch=MOODLE_501_STABLE)](https://github.com/moodle-an-hochschulen/moodle-block_cohortspecifichtml/actions?query=workflow%3A%22Moodle+Plugin+CI%22+branch%3AMOODLE_501_STABLE)
 
 This Text block provides the possibility to selectively display the block to members of specific cohorts.
 
