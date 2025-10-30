@@ -4,6 +4,10 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
+### Unreleased
+
+* 2025-10-26 - Prepare compatibility for Moodle 5.1.
+
 ### v5.0-r2
 
 * 2025-10-23 - Upstream change: Adopt plugin file service access check changes from block_html in MDL-85037
