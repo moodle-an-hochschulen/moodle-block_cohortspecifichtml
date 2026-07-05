@@ -291,14 +291,25 @@ class block_cohortspecifichtml extends block_base {
      * @throws coding_exception
      */
     public function content_is_trusted() {
-        global $SCRIPT;
+        global $SCRIPT, $USER;
 
         if (!$context = context::instance_by_id($this->instance->parentcontextid, IGNORE_MISSING)) {
             return false;
         }
         // Find out if this block is on the profile page.
         if ($context->contextlevel == CONTEXT_USER) {
-            if ($SCRIPT === '/my/index.php') {
+            $usersubpage = my_get_page($USER->id);
+            $usersubpage = $usersubpage->id ?? null;
+            if (
+                $SCRIPT === '/my/index.php' ||
+                (
+                    defined('WS_SERVER') &&
+                    WS_SERVER &&
+                    !empty($this->page) &&
+                    $this->page->pagetype === 'my-index' &&
+                    $this->page->subpage === $usersubpage
+                )
+            ) {
                 // This is exception - page is completely private, nobody else may see content there ...
                 // ... that is why we allow JS here.
                 return true;
