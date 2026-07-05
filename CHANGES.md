@@ -4,6 +4,10 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
+### Unreleased
+
+* 2026-07-05 - Adopt upstream changes from MDL-85322 to trust dashboard content in WS context
+
 ### v5.2-r1
 
 * 2026-04-20 - Prepare compatibility for Moodle 5.2.
