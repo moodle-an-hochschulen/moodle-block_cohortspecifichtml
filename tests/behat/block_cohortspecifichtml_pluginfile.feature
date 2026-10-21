@@ -32,7 +32,7 @@ Feature: Serving files of Text (on cohorts) blocks
     And I click on the "Image" button for the "Content" TinyMCE editor
     And I click on "Browse repositories" "button" in the "Insert image" "dialogue"
     And I upload "blocks/cohortspecifichtml/tests/fixtures/cohortspecifichtml.png" to the file picker for TinyMCE
-    And I set the field "How would you describe this image to someone who cannot see it?" to "Cohort image"
+    And I set the field "altentry" to "Cohort image"
     And I click on "Save" "button" in the "Image details" "dialogue"
     And I set the field "Show to cohorts" to "1-2"
     And I press "Save changes"
@@ -61,7 +61,7 @@ Feature: Serving files of Text (on cohorts) blocks
     And I click on the "Image" button for the "Content" TinyMCE editor
     And I click on "Browse repositories" "button" in the "Insert image" "dialogue"
     And I upload "blocks/cohortspecifichtml/tests/fixtures/cohortspecifichtml.png" to the file picker for TinyMCE
-    And I set the field "How would you describe this image to someone who cannot see it?" to "Frontpage image"
+    And I set the field "altentry" to "Frontpage image"
     And I click on "Save" "button" in the "Image details" "dialogue"
     And I set the field "Show to cohorts" to "1-2"
     And I set the field "Invert the selection (hide it for the selected cohorts)" to "<invert>"
@@ -106,7 +106,7 @@ Feature: Serving files of Text (on cohorts) blocks
     And I click on the "Image" button for the "Content" TinyMCE editor
     And I click on "Browse repositories" "button" in the "Insert image" "dialogue"
     And I upload "blocks/cohortspecifichtml/tests/fixtures/cohortspecifichtml.png" to the file picker for TinyMCE
-    And I set the field "How would you describe this image to someone who cannot see it?" to "Dashboard image"
+    And I set the field "altentry" to "Dashboard image"
     And I click on "Save" "button" in the "Image details" "dialogue"
     And I set the field "Show to cohorts" to "1-2"
     And I press "Save changes"
@@ -137,7 +137,7 @@ Feature: Serving files of Text (on cohorts) blocks
     And I click on the "Image" button for the "Content" TinyMCE editor
     And I click on "Browse repositories" "button" in the "Insert image" "dialogue"
     And I upload "blocks/cohortspecifichtml/tests/fixtures/cohortspecifichtml.png" to the file picker for TinyMCE
-    And I set the field "How would you describe this image to someone who cannot see it?" to "Profile image"
+    And I set the field "altentry" to "Profile image"
     And I click on "Save" "button" in the "Image details" "dialogue"
     And I set the field "Show to cohorts" to "1-2"
     And I press "Save changes"
