@@ -45,7 +45,7 @@ function block_cohortspecifichtml_pluginfile(
     $forcedownload,
     array $options = []
 ) {
-    global $CFG;
+    global $CFG, $PAGE, $USER;
     require_once("{$CFG->dirroot}/user/lib.php");
     require_once($CFG->dirroot . '/blocks/cohortspecifichtml/locallib.php');
 
@@ -94,10 +94,26 @@ function block_cohortspecifichtml_pluginfile(
     }
 
     // Check the same cohort conditions for the file. If not valid, do send_file_not_found.
+    // Within pluginfile.php, the global $PAGE does not necessarily have a context set (for example for blocks on the
+    // dashboard or in category context if forcelogin is disabled). Thus, we set the block's parent context as page context
+    // to be able to check the editing mode safely.
+    $blockparentcontext = $context->get_parent_context();
+    $PAGE->set_context($blockparentcontext);
+    // Blocks on the dashboard and on the profile page are edited with dedicated capabilities,
+    // just like in my/index.php and user/profile.php.
+    if ($blockparentcontext->contextlevel == CONTEXT_USER) {
+        $isownuser = ($blockparentcontext->instanceid == $USER->id);
+        if ($birecordorcm->pagetypepattern == 'my-index' && $isownuser) {
+            $PAGE->set_blocks_editing_capability('moodle/my:manageblocks');
+        } else if ($birecordorcm->pagetypepattern == 'user-profile') {
+            $PAGE->set_blocks_editing_capability($isownuser ? 'moodle/user:manageownblocks' : 'moodle/user:manageblocks');
+        }
+    }
     $instance = block_instance($birecordorcm->blockname, $birecordorcm);
     if (
-        block_cohortspecifichtml_show_block($instance) != true &&
-            block_cohortspecifichtml_get_caneditandediton($instance) != true
+        $instance === false ||
+        (block_cohortspecifichtml_show_block($instance) != true &&
+            block_cohortspecifichtml_get_caneditandediton($instance) != true)
     ) {
         send_file_not_found();
     }
