@@ -6,6 +6,7 @@ Changes
 
 ### Unreleased
 
+* 2026-10-21 - Upgrade: Adopt changes from MDL-82650 and use new \core\user::can_view_profile()
 * 2026-10-05 - Prepare compatibility for Moodle 5.3.
 
 ### v5.2-r3

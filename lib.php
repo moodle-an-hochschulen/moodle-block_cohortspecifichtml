@@ -69,7 +69,7 @@ function block_cohortspecifichtml_pluginfile(
         } else if ($parentcontext->contextlevel === CONTEXT_USER) {
             $user = core_user::get_user($parentcontext->instanceid, '*', MUST_EXIST);
             $extracaps = block_method_result('cohortspecifichtml', 'get_extra_capabilities');
-            if (!user_can_view_profile($user, null, $parentcontext) || !has_any_capability($extracaps, $context)) {
+            if (!\core\user::can_view_profile($user, null, $parentcontext) || !has_any_capability($extracaps, $context)) {
                 send_file_not_found();
             }
         }
