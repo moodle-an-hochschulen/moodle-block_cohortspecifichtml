@@ -175,8 +175,7 @@ function block_cohortspecifichtml_get_invertcohortselection($blockinstance) {
  * @return boolean
  */
 function block_cohortspecifichtml_get_caneditandediton($blockinstance) {
-    global $PAGE;
-    if ($PAGE->user_is_editing() && $blockinstance->user_can_edit()) {
+    if ($blockinstance->page->user_is_editing() && $blockinstance->user_can_edit()) {
         return true;
     } else {
         return false;
