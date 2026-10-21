@@ -4,6 +4,10 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
+### Unreleased
+
+* 2026-10-05 - Prepare compatibility for Moodle 5.3.
+
 ### v5.2-r3
 
 * 2026-10-20 - Bugfix: Fatal error when serving block files while editing mode is on and the global page has no context, resolves #15
