@@ -4,7 +4,7 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
-### Unreleased
+### v5.0-r4
 
 * 2026-10-20 - Bugfix: Fatal error when serving block files while editing mode is on and the global page has no context, resolves #15
 
