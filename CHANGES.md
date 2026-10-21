@@ -4,6 +4,10 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
+### Unreleased
+
+* 2026-10-20 - Bugfix: Fatal error when serving block files while editing mode is on and the global page has no context, resolves #15
+
 ### v4.5-r2
 
 * 2025-10-23 - Upstream change: Adopt plugin file service access check changes from block_html in MDL-85037
