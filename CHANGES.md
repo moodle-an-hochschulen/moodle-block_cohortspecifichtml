@@ -4,7 +4,7 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
-### Unreleased
+### v5.3-r1
 
 * 2026-10-21 - Upgrade: Adopt changes from MDL-82650 and use new \core\user::can_view_profile()
 * 2026-10-05 - Prepare compatibility for Moodle 5.3.
