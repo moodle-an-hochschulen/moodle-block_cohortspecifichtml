@@ -301,7 +301,11 @@ function block_cohortspecifichtml_get_restrictioninfo($blockinstance) {
                     'block_cohortspecifichtml'
                 ), ['class' => 'small']);
             }
-            $cohorts = block_cohortspecifichtml_get_cohort_names($configedcohorts);
+            // Escape the cohort names as the restriction info is not passed through format_text().
+            $cohorts = [];
+            foreach (block_cohortspecifichtml_get_cohort_names($configedcohorts) as $cohortname) {
+                $cohorts[] = format_string($cohortname, true, ['context' => $blockinstance->context]);
+            }
             // Only show the list with restricted cohorts if at least one cohort is selected.
             $info .= html_writer::alist($cohorts, ['class' => 'small']);
             $info .= html_writer::tag('hr', null);

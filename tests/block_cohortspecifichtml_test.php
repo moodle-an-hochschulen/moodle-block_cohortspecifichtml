@@ -94,6 +94,45 @@ final class block_cohortspecifichtml_test extends \advanced_testcase {
     }
 
     /**
+     * Tests the restriction info which is shown above the block content.
+     * @covers ::get_content
+     */
+    public function test_get_content_restrictioninfo(): void {
+        global $DB;
+        $this->resetAfterTest();
+
+        $this->setAdminUser();
+
+        // Create a cohort whose name contains HTML, as it could be stored through a non-form channel.
+        $cohort = $this->getDataGenerator()->create_cohort();
+        $DB->set_field('cohort', 'name', '<b>R&D</b> cohort', ['id' => $cohort->id]);
+
+        // Create a block on a course where the block content is trusted and not cleaned.
+        $course = $this->getDataGenerator()->create_course();
+        $block = $this->create_block($course);
+        $this->assertTrue($block->content_is_trusted());
+        $block->config = (object) [
+            'text' => 'Block text',
+            'format' => FORMAT_HTML,
+            'cohorts' => [$cohort->id],
+        ];
+
+        // The cohort name is escaped in the restriction info.
+        $text = $block->get_content()->text;
+        $this->assertStringContainsString('<li>R&amp;D cohort</li>', $text);
+        $this->assertStringNotContainsString('<b>', $text);
+
+        // The restriction info is not formatted in the format of the block text.
+        $block->content = null;
+        $block->config->text = 'Plain <text>';
+        $block->config->format = FORMAT_PLAIN;
+        $text = $block->get_content()->text;
+        $this->assertStringContainsString('<span class="badge bg-info text-light">', $text);
+        $this->assertStringContainsString('<li>R&amp;D cohort</li>', $text);
+        $this->assertStringContainsString('Plain &lt;text&gt;', $text);
+    }
+
+    /**
      * Constructs a page object for the test course.
      *
      * @param \stdClass $course Moodle course object
