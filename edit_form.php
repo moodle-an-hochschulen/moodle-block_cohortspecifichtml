@@ -69,7 +69,7 @@ class block_cohortspecifichtml_edit_form extends block_edit_form {
         if (!empty($selectablecohorts)) {
             // Transform object to array.
             foreach ($selectablecohorts as $c) {
-                $options[$c->id] = format_string($c->name);
+                $options[$c->id] = format_string($c->name, true, ['context' => $this->block->context]);
             }
             $mform->addElement('select', 'config_cohorts', get_string('cohortselection', 'block_cohortspecifichtml'), $options);
             // Enable multi selection.
