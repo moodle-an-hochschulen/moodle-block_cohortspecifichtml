@@ -39,7 +39,13 @@ This plugin has the following additional settings for block instances:
 
 ### Cohorts
 
-With this setting you can select the cohorts for which the block should be displayed. A prerequisite is of course that cohorts exist in your Moodle instance.
+With this setting you can select the cohorts for which the block should be displayed. A prerequisite is of course that cohorts exist in your Moodle instance and that you are allowed to select them.
+
+Just like the cohort selectors in Moodle core, the cohort selection only offers the cohorts which you are allowed to view in the context of the block:
+* Cohorts from the system context and from the course category of the block (including its parent categories) are offered. Cohorts from other course categories are not offered at all.
+* Hidden cohorts are only offered if you have the moodle/cohort:view capability in the system context (for system cohorts) or in the course category where the cohort was created (for category cohorts), or if you have the block/cohortspecifichtml:selecthiddencohorts capability (see below) in the block context.
+
+If a block instance has already been configured with cohorts which you are not allowed to select (for example by an admin), these cohorts are still offered in the cohort selection as long as they are configured. If you keep them selected, they remain configured when you save the block configuration. If you unselect them and save the block configuration, they are removed and are not offered to you anymore afterwards.
 
 Example: If a user matches at least one of the selected cohorts the block will be displayed to him.
 
@@ -57,9 +63,22 @@ Capabilities
 
 This plugin also introduces these additional capabilities:
 
+### block/cohortspecifichtml:addinstance
+
+With this capability, users can add Text (on cohorts) blocks to pages like courses or the site homepage. By default, this capability is allocated to the editing teacher and the manager roles.
+
+### block/cohortspecifichtml:myaddinstance
+
+With this capability, users can add Text (on cohorts) blocks to their own Dashboard. As the cohort restriction does not make much sense on a personal Dashboard, this capability is not allocated to any standard roles by default.
+
+### block/cohortspecifichtml:selecthiddencohorts
+
+With this capability, users are additionally offered the hidden cohorts in the cohort selection of a block instance. This applies to hidden cohorts from the system context and from the course category of the block (including its parent categories). Visible cohorts from these contexts are offered anyway, even without this capability. Please note that this capability discloses the names of these hidden cohorts to the capability owners. By default, this capability is only allocated to the manager role.
+As an admin, you might want to add this capability to the teacher role to let teachers restrict blocks to hidden cohorts. Cohorts from other course categories are not offered, even with this capability.
+
 ### block/cohortspecifichtml:viewalways
 
-Text (on cohorts) blocks are always visible to the capability owners independently from any membership in defined cohorts. By default, this capability is not allocated to any standard roles.
+With this capability, text (on cohorts) blocks are always visible to the capability owners independently from any membership in defined cohorts. By default, this capability is not allocated to any standard roles.
 As an admin, you might want to add this capability to the teacher role to let teachers see all the Text (on cohort) block contents independently from the editing state of the course.
 
 

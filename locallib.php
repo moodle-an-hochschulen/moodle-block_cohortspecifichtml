@@ -25,14 +25,90 @@
 use core\output\html_writer;
 
 /**
- * Get all cohorts which exist in Moodle, regardless if there visibility status, context or members.
+ * Get the cohorts which the current user is allowed to select in the configuration of a block instance.
+ *
+ * These are the cohorts which the user is allowed to view in the given context, just like in the cohort selectors
+ * of Moodle core. Cohorts from other course categories are never offered. Hidden cohorts are offered if the user has the
+ * moodle/cohort:view capability in the context where the cohort was created (the system context or a course category)
+ * or the block/cohortspecifichtml:selecthiddencohorts capability in the given context.
+ *
+ * @param context $context The block context or, while the block is being added, the context of the page.
  *
  * @return array
  */
-function block_cohortspecifichtml_get_all_cohorts() {
+function block_cohortspecifichtml_get_selectable_cohorts($context) {
     global $DB;
 
-    return $DB->get_records_select('cohort', '', [], 'name', 'id, name, component');
+    // This follows the logic of cohort_get_available_cohorts(). However, we can't use this function directly as it only
+    // considers the parent contexts. While the block is being added, Moodle core passes the context of the page instead of
+    // the block context and this page context would be missing then (for example the system context on the default Dashboard).
+    $contextids = $context->get_parent_context_ids($context->contextlevel != CONTEXT_BLOCK);
+
+    // Find the contexts where the user is able to see any cohorts and the contexts where the user is able to see visible cohorts.
+    if (has_capability('block/cohortspecifichtml:selecthiddencohorts', $context)) {
+        $contextsany = $contextids;
+    } else {
+        $contextsany = array_filter($contextids, function ($contextid) {
+            return has_capability('moodle/cohort:view', context::instance_by_id($contextid));
+        });
+    }
+    $contextsvisible = array_diff($contextids, $contextsany);
+
+    $subqueries = [];
+    $params = [];
+    if (!empty($contextsany)) {
+        [$insql, $inparams] = $DB->get_in_or_equal($contextsany, SQL_PARAMS_NAMED, 'ctxa');
+        $subqueries[] = "contextid $insql";
+        $params = array_merge($params, $inparams);
+    }
+    if (!empty($contextsvisible)) {
+        [$insql, $inparams] = $DB->get_in_or_equal($contextsvisible, SQL_PARAMS_NAMED, 'ctxv');
+        $subqueries[] = "(visible = 1 AND contextid $insql)";
+        $params = array_merge($params, $inparams);
+    }
+    if (empty($subqueries)) {
+        return [];
+    }
+
+    return $DB->get_records_select('cohort', implode(' OR ', $subqueries), $params, 'name', 'id, name, component');
+}
+
+/**
+ * Get the cohorts which are configured in a block instance, but which the current user is not allowed to select.
+ * These cohorts are still offered in the block configuration form as long as they are configured, so that the user can keep
+ * or remove them. Once they have been removed from the configuration, they are not offered anymore.
+ *
+ * @param block_cohortspecifichtml $blockinstance
+ *
+ * @return array The unselectable cohorts which still exist.
+ */
+function block_cohortspecifichtml_get_unselectable_configedcohorts($blockinstance) {
+    global $DB;
+
+    $configedcohorts = block_cohortspecifichtml_get_configedcohorts($blockinstance);
+    if (empty($configedcohorts)) {
+        return [];
+    }
+
+    $selectablecohorts = block_cohortspecifichtml_get_selectable_cohorts($blockinstance->context);
+    $unselectablecohorts = array_diff($configedcohorts, array_keys($selectablecohorts));
+    if (empty($unselectablecohorts)) {
+        return [];
+    }
+
+    // Cohorts which have been deleted in the meantime are not returned.
+    return $DB->get_records_list('cohort', 'id', $unselectablecohorts, 'name', 'id, name, component');
+}
+
+/**
+ * Check if any cohort exists in Moodle, regardless of its visibility status, context or members.
+ *
+ * @return bool
+ */
+function block_cohortspecifichtml_cohorts_exist() {
+    global $DB;
+
+    return $DB->record_exists('cohort', []);
 }
 
 /**
@@ -106,10 +182,8 @@ function block_cohortspecifichtml_show_block($blockinstance) {
     if ($viewalways == true) {
         $showblock = true;
     } else {
-        // Get the existent cohorts.
-        $allcohorts = block_cohortspecifichtml_get_all_cohorts();
         // Cohorts exist in the system.
-        if (!empty($allcohorts)) {
+        if (block_cohortspecifichtml_cohorts_exist()) {
             // Get the selected cohorts, if any.
             // No cohort is selected.
             if (empty($configedcohorts)) {

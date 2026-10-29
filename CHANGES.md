@@ -6,6 +6,12 @@ Changes
 
 ### Unreleased
 
+* 2026-10-29 - Feature: Add the block/cohortspecifichtml:selecthiddencohorts capability to offer hidden cohorts in the block configuration form (allocated to the manager role by default).
+* 2026-10-29 - Confidentiality: Only offer the cohorts which the configuring user is allowed to view in the block configuration form instead of all cohorts of the site. Already configured cohorts which the user is not allowed to view are still offered as long as they are configured.
+* 2026-10-29 - Confidentiality: Do not offer cohorts from other course categories than the block's course category in the block configuration form anymore.
+* 2026-10-29 - Improvement: Do not grant the block/cohortspecifichtml:myaddinstance capability to the authenticated user role by default anymore and remove it from the role definition of all roles with the user archetype on upgrade if no user has added the block to their Dashboard yet.
+               Please note: If any user has already added a Text (on cohorts) block to their Dashboard, the upgrade assumes that the capability is used deliberately and does not change the role definitions. If the capability is removed, a notification is shown during the upgrade. If you really want your users to be able to add Text (on cohorts) blocks to their own Dashboard and the capability was removed by the upgrade, you have to allow this capability for the authenticated user role again after the upgrade. Overrides of this capability in other contexts than the system context are not touched by the upgrade.
+* 2026-10-29 - Documentation: Complete the list of capabilities in the README
 * 2026-10-29 - Tests: Call the plugin's own privacy provider instead of the mod_forum provider in test_get_users_in_context()
 
 ### v5.3-r1

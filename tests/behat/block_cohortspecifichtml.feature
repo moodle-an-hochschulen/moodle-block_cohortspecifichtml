@@ -62,3 +62,10 @@ Feature: Adding and configuring Text (on cohorts) blocks
     And "block_cohortspecifichtml" "block" should exist
     And "The Text block header" "block" should exist
     Then I should see "Static text with a header" in the "The Text block header" "block"
+
+  @javascript
+  Scenario: A student can not add the block to the dashboard by default
+    When I log in as "student1"
+    And I follow "Dashboard"
+    And I turn editing mode on
+    Then the add block selector should not contain "Text (on cohorts)..." block

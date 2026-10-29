@@ -98,6 +98,9 @@ Feature: Serving files of Text (on cohorts) blocks
   Scenario Outline: Counter-check: Serve an image of a Text (on cohorts) block to a user who is not a member of the configured cohort but edits the block on their dashboard
     Given the following config values are set as admin:
       | forcelogin | <forcelogin> |
+    And the following "permission overrides" exist:
+      | capability                             | permission | role | contextlevel | reference |
+      | block/cohortspecifichtml:myaddinstance | Allow      | user | System       |           |
     And I log in as "student3"
     And I follow "Dashboard"
     And I turn editing mode on
