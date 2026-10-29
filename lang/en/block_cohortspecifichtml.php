@@ -26,6 +26,7 @@ $string['cohortselection'] = 'Show to cohorts';
 $string['cohortselection_help'] = 'The block will be only shown to the members of at least one selected cohort. This means that if you selected, for example, two cohorts and a user is only member of one of them, the block will be displayed to him as he is part of at least one selected cohort. This is equivalent to an OR connection.';
 $string['cohortspecifichtml:addinstance'] = 'Add a new Text (on cohorts) block';
 $string['cohortspecifichtml:myaddinstance'] = 'Add a new Text (on cohorts) block to Dashboard';
+$string['cohortspecifichtml:selecthiddencohorts'] = 'Select hidden cohorts in the block configuration';
 $string['cohortspecifichtml:viewalways'] = 'Always view the block';
 $string['invertcohortselection'] = 'Invert the selection (hide it for the selected cohorts)';
 $string['invertcohortselection_help'] = 'With this setting you can invert your selection. This means that the block will not be shown to members of the selected cohort but to everyone else.<br/>
@@ -34,6 +35,7 @@ Examples: <ul> <li>If a user matches at least one of the selected cohorts the bl
 $string['newhtmlcohortblock'] = 'New Text (on cohorts)';
 $string['nocohorts'] = 'No cohorts are defined yet. Without any cohorts <strong>the block will not be visible</strong> to anybody, even if you have entered content above. <br/>
 Cohorts can be managed in the <a href="{$a->url}">site administration</a>.';
+$string['nocohortsavailable'] = 'There are no cohorts which you are allowed to select. Without any selected cohorts <strong>the block will not be visible</strong> to anybody, even if you have entered content above.';
 $string['notvisibletoall'] = '<br/>This block is <strong>not visible</strong> to <strong>any</strong> user.';
 $string['notvisibletocohorts'] = '<br/><strong>Not</strong> visible to cohorts:';
 $string['pluginname'] = 'Text (on cohorts)';
@@ -42,5 +44,6 @@ $string['resetcohortselection'] = 'Reset selection';
 $string['resetcohortselection_help'] = 'If you enable and save this setting, the selection you made will be reset. This means that no cohorts are selected. Unfortunately, this workaround is needed, because unselecting all cohorts would not result in any change as an empty result is passed to the server. <br/>
 If you open the block configuration again this setting is reset and won\'t be shown as there is nothing that could be reset anymore.';
 $string['unrestricted'] = 'Unrestricted';
+$string['updater_2026100501_removemyaddinstance'] = 'The block/cohortspecifichtml:myaddinstance capability is not allocated to the authenticated user role by default anymore. As no user has added a Text (on cohorts) block to their Dashboard yet, this capability has been removed from the role definition of the authenticated user role (and all other roles with the user archetype). This simply aligns your role definitions with the new default which is also used on new installations of this plugin. If you really want your users to be able to add Text (on cohorts) blocks to their own Dashboard, please allow this capability again.';
 $string['visibletoall'] = '<br/>This block is <strong>visible</strong> to <strong>all</strong> users.';
 $string['visibletocohorts'] = '<br/><strong>Only</strong> visible to cohorts:';
