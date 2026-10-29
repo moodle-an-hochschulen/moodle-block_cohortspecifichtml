@@ -4,6 +4,10 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
+### Unreleased
+
+* 2026-10-29 - Tests: Call the plugin's own privacy provider instead of the mod_forum provider in test_get_users_in_context()
+
 ### v5.3-r1
 
 * 2026-10-21 - Upgrade: Adopt changes from MDL-82650 and use new \core\user::can_view_profile()
