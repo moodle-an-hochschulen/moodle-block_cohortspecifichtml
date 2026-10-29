@@ -4,6 +4,10 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
+### Unreleased
+
+* 2026-10-29 - Tests: Call the plugin's own privacy provider instead of the mod_forum provider in test_get_users_in_context()
+
 ### v5.0-r4
 
 * 2026-10-20 - Bugfix: Fatal error when serving block files while editing mode is on and the global page has no context, resolves #15
