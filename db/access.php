@@ -30,11 +30,7 @@ $capabilities = [
     'block/cohortspecifichtml:myaddinstance' => [
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
-        'archetypes' => [
-            'user' => CAP_ALLOW,
-        ],
-
-        'clonepermissionsfrom' => 'moodle/my:manageblocks',
+        'archetypes' => [],
     ],
 
     'block/cohortspecifichtml:addinstance' => [
@@ -48,6 +44,14 @@ $capabilities = [
         ],
 
         'clonepermissionsfrom' => 'moodle/site:manageblocks',
+    ],
+
+    'block/cohortspecifichtml:selecthiddencohorts' => [
+        'captype' => 'read',
+        'contextlevel' => CONTEXT_BLOCK,
+        'archetypes' => [
+            'manager' => CAP_ALLOW,
+        ],
     ],
 
     'block/cohortspecifichtml:viewalways' => [

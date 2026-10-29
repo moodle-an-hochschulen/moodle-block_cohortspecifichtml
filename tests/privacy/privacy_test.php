@@ -58,7 +58,11 @@ final class privacy_test extends \core_privacy\tests\provider_testcase {
      * @return \block_instance
      */
     protected function create_user_block($title, $body, $format) {
-        global $USER;
+        global $DB, $USER;
+
+        // The block can't be added to the Dashboard by the authenticated user role by default.
+        $userrole = $DB->get_field('role', 'id', ['shortname' => 'user']);
+        assign_capability('block/cohortspecifichtml:myaddinstance', CAP_ALLOW, $userrole, \context_system::instance(), true);
 
         $configdata = (object) [
             'title' => $title,
@@ -411,7 +415,7 @@ final class privacy_test extends \core_privacy\tests\provider_testcase {
 
         // Ensure passing the course context returns no users.
         $userlist = new \core_privacy\local\request\userlist($coursecontext, $component);
-        \mod_forum\privacy\provider::get_users_in_context($userlist);
+        \block_cohortspecifichtml\privacy\provider::get_users_in_context($userlist);
         $this->assertEmpty($userlist);
     }
 
