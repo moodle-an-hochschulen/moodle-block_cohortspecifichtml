@@ -411,7 +411,7 @@ final class privacy_test extends \core_privacy\tests\provider_testcase {
 
         // Ensure passing the course context returns no users.
         $userlist = new \core_privacy\local\request\userlist($coursecontext, $component);
-        \mod_forum\privacy\provider::get_users_in_context($userlist);
+        \block_cohortspecifichtml\privacy\provider::get_users_in_context($userlist);
         $this->assertEmpty($userlist);
     }
 
