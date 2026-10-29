@@ -150,7 +150,8 @@ class block_cohortspecifichtml extends block_base {
 
                 $info = block_cohortspecifichtml_get_restrictioninfo($this);
 
-                $this->content->text = format_text($info . $this->config->text, $format, $filteropt);
+                // The restriction info is already HTML and must not be formatted in the format of the block text.
+                $this->content->text = $info . format_text($this->config->text, $format, $filteropt);
             }
         } else { // No text is entered, set an empty string.
             $this->content->text = '';
