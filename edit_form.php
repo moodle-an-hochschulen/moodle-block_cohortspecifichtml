@@ -61,12 +61,15 @@ class block_cohortspecifichtml_edit_form extends block_edit_form {
         $mform->setType('config_text', PARAM_RAW); // XSS is prevented when printing the block contents and serving files.
 
         // Cohort selection.
-        // Get all cohorts.
-        $allcohorts = block_cohortspecifichtml_get_all_cohorts();
-        if (!empty($allcohorts)) {
+        // Get the cohorts which the user is allowed to select.
+        $selectablecohorts = block_cohortspecifichtml_get_selectable_cohorts($this->block->context);
+        // Add the already configured cohorts which the user is not allowed to select, so that the user can keep or remove them.
+        $selectablecohorts += block_cohortspecifichtml_get_unselectable_configedcohorts($this->block);
+        core_collator::asort_objects_by_property($selectablecohorts, 'name');
+        if (!empty($selectablecohorts)) {
             // Transform object to array.
-            foreach ($allcohorts as $c) {
-                $options[$c->id] = format_string($c->name);
+            foreach ($selectablecohorts as $c) {
+                $options[$c->id] = format_string($c->name, true, ['context' => $this->block->context]);
             }
             $mform->addElement('select', 'config_cohorts', get_string('cohortselection', 'block_cohortspecifichtml'), $options);
             // Enable multi selection.
@@ -94,6 +97,14 @@ class block_cohortspecifichtml_edit_form extends block_edit_form {
                 );
                 $mform->addHelpButton('config_resetcohortselection', 'resetcohortselection', 'block_cohortspecifichtml');
             }
+        } else if (block_cohortspecifichtml_cohorts_exist()) {
+            // Add a static element with a hint that there are no cohorts which the user is allowed to select.
+            $mform->addElement(
+                'static',
+                'nocohorts',
+                get_string('cohorts', 'core_cohort'),
+                get_string('nocohortsavailable', 'block_cohortspecifichtml')
+            );
         } else {
             // Add a static element with a hint that there are no cohorts existing.
             $mform->addElement(
