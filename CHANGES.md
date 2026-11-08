@@ -6,6 +6,7 @@ Changes
 
 ### Unreleased
 
+* 2026-11-08 - Bugfix: Require the block_html version of Moodle 4.5 instead of the plugin's own former version number as dependency in version.php.
 * 2026-10-29 - Improvement: Escape the cohort names in the restriction info which is shown above the block content and do not format the restriction info in the format of the block text anymore.
 * 2026-10-29 - Feature: Add the block/cohortspecifichtml:selecthiddencohorts capability to offer hidden cohorts in the block configuration form (allocated to the manager role by default).
 * 2026-10-29 - Confidentiality: Only offer the cohorts which the configuring user is allowed to view in the block configuration form instead of all cohorts of the site. Already configured cohorts which the user is not allowed to view are still offered as long as they are configured.
