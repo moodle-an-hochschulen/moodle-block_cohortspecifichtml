@@ -36,30 +36,38 @@ function xmldb_block_cohortspecifichtml_upgrade($oldversion) {
         // anymore. Remove it from the role definition of all roles with the user archetype as well, but only if no user
         // has added the block to their Dashboard yet. Otherwise, we assume that the capability is used deliberately.
         // Overrides in other contexts than the system context are not touched as they have been set deliberately by an admin.
-        $sql = 'SELECT 1
-                  FROM {block_instances} bi
-                  JOIN {context} ctx ON ctx.id = bi.parentcontextid
-                 WHERE bi.blockname = :blockname
-                       AND ctx.contextlevel = :contextlevel
-                       AND ' . $DB->sql_like('bi.pagetypepattern', ':pagetypepattern');
-        $params = [
-            'blockname' => 'cohortspecifichtml',
-            'contextlevel' => CONTEXT_USER,
-            'pagetypepattern' => 'my-%',
-        ];
-        if (!$DB->record_exists_sql($sql, $params)) {
-            $systemcontext = context_system::instance();
-            foreach (get_archetype_roles('user') as $role) {
-                unassign_capability('block/cohortspecifichtml:myaddinstance', $role->id, $systemcontext->id);
+        // As this upgrade step has a different version number on each of the plugin's release branches, it would run again
+        // when the site is upgraded to the next Moodle major version. To avoid removing the capability again after an admin
+        // has allowed it deliberately, the step is only processed once per site, which is remembered with a config flag.
+        if (!get_config('block_cohortspecifichtml', 'myaddinstancecleanupdone')) {
+            $sql = 'SELECT 1
+                      FROM {block_instances} bi
+                      JOIN {context} ctx ON ctx.id = bi.parentcontextid
+                     WHERE bi.blockname = :blockname
+                           AND ctx.contextlevel = :contextlevel
+                           AND ' . $DB->sql_like('bi.pagetypepattern', ':pagetypepattern');
+            $params = [
+                'blockname' => 'cohortspecifichtml',
+                'contextlevel' => CONTEXT_USER,
+                'pagetypepattern' => 'my-%',
+            ];
+            if (!$DB->record_exists_sql($sql, $params)) {
+                $systemcontext = context_system::instance();
+                foreach (get_archetype_roles('user') as $role) {
+                    unassign_capability('block/cohortspecifichtml:myaddinstance', $role->id, $systemcontext->id);
+                }
+
+                // And show a notification about that fact (this also looks fine in the CLI installer).
+                $notification = new \core\output\notification(
+                    get_string('updater_2026100501_removemyaddinstance', 'block_cohortspecifichtml'),
+                    \core\output\notification::NOTIFY_INFO
+                );
+                $notification->set_show_closebutton(false);
+                echo $OUTPUT->render($notification);
             }
 
-            // And show a notification about that fact (this also looks fine in the CLI installer).
-            $notification = new \core\output\notification(
-                get_string('updater_2026100501_removemyaddinstance', 'block_cohortspecifichtml'),
-                \core\output\notification::NOTIFY_INFO
-            );
-            $notification->set_show_closebutton(false);
-            echo $OUTPUT->render($notification);
+            // Remember that this upgrade step has been processed.
+            set_config('myaddinstancecleanupdone', 1, 'block_cohortspecifichtml');
         }
 
         // Cohortspecifichtml savepoint reached.
