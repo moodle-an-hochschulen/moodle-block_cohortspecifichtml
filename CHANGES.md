@@ -4,7 +4,7 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
-### Unreleased
+### v4.5-r4
 
 * 2026-11-08 - Bugfix: Require the block_html version of Moodle 4.5 instead of the plugin's own former version number as dependency in version.php.
 * 2026-10-29 - Improvement: Escape the cohort names in the restriction info which is shown above the block content and do not format the restriction info in the format of the block text anymore.
