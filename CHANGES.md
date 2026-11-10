@@ -4,7 +4,7 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
-### Unreleased
+### v5.3-r2
 
 * 2026-10-29 - Improvement: Escape the cohort names in the restriction info which is shown above the block content and do not format the restriction info in the format of the block text anymore.
 * 2026-10-29 - Feature: Add the block/cohortspecifichtml:selecthiddencohorts capability to offer hidden cohorts in the block configuration form (allocated to the manager role by default).
