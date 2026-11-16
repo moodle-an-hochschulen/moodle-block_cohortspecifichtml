@@ -67,6 +67,58 @@ class restore_cohortspecifichtml_block_task extends restore_block_task {
     }
 
     /**
+     * Handle the configured cohorts after the restore.
+     *
+     * If the backup comes from the same site, the configured cohorts are kept as they are, regardless of their
+     * visibility, their context and whether they still exist. This is consistent with the block configuration form
+     * which keeps configured cohorts which the user is not allowed to select as well.
+     *
+     * If the backup comes from another site, the cohort ids of the original site do not mean anything on this site
+     * and might even point to unrelated cohorts. Thus, the cohort selection is removed. As an empty cohort selection
+     * would show the block to all users if the selection is inverted, the inversion is removed as well.
+     * This way, the block is not shown to anybody until it is configured again and a restore never silently
+     * shows a block to users who were not meant to see it.
+     */
+    public function after_restore() {
+        global $DB;
+
+        // If the backup comes from the same site, there is nothing to do.
+        if ($this->is_samesite()) {
+            return;
+        }
+
+        // If the block instance was not restored or does not have any configuration, there is nothing to do.
+        $blockid = $this->get_blockid();
+        if (empty($blockid)) {
+            return;
+        }
+        $configdata = $DB->get_field('block_instances', 'configdata', ['id' => $blockid]);
+        if (empty($configdata)) {
+            return;
+        }
+
+        // If no cohorts are configured, there is nothing to do.
+        $config = $this->decode_configdata($configdata);
+        if (empty($config->cohorts)) {
+            return;
+        }
+
+        // Remove the cohort selection and its inversion.
+        $config->cohorts = [];
+        $config->invertcohortselection = 0;
+        $DB->set_field('block_instances', 'configdata', base64_encode(serialize($config)), ['id' => $blockid]);
+
+        // Add a warning to the restore log.
+        $name = (isset($config->title) && $config->title !== '') ? $config->title : 'ID ' . $blockid;
+        $this->get_logger()->process(
+            'Restored Text (on cohorts) block (' . $name . ') was restricted to cohorts which do not exist ' .
+                'on this site, the cohort selection was removed and the block is not shown to anybody ' .
+                'until it is configured again',
+            backup::LOG_WARNING
+        );
+    }
+
+    /**
      * Return the contents of this block to be processed by the content decoder.
      *
      * @return array
