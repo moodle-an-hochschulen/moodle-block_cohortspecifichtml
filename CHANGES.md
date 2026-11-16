@@ -4,6 +4,11 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
+### Unreleased
+
+* 2026-11-16 - Bugfix: Remove the cohort selection and its inversion from a block when a course is restored from a backup of another site, as the cohort IDs of the other site might point to unrelated cohorts. The block is not shown to anybody until it is configured again and a warning is added to the restore log. Restores, imports and duplications on the same site are not affected.
+* 2026-11-16 - Bugfix: Pass the context to format_string() as options array instead of as context object in the block configuration form to avoid a developer debugging message, relates to MDL-90621.
+
 ### v5.3-r2
 
 * 2026-10-29 - Improvement: Escape the cohort names in the restriction info which is shown above the block content and do not format the restriction info in the format of the block text anymore.
