@@ -88,6 +88,26 @@ Scheduled Tasks
 This plugin does not add any additional scheduled tasks.
 
 
+Backup & Restore
+----------------
+
+This plugin has the following support for backup & restore:
+
+### Block content and block settings
+
+The block content, including its embedded files, and the block settings are included in course backups.
+
+### Cohort selection
+
+The cohort selection of a block and its inversion are included in course backups as well. However, as cohorts are not part of a course backup, it depends on the backup & restore case how they are handled:
+* Restoring a course backup file onto the same site, importing course content from one course into another course on the same site, or copying / duplicating the course on the same site. In this case, the cohort selection of the block is kept as it is. This also applies to cohorts which you are not allowed to select and to cohorts which have been deleted in the meantime.
+* Creating a course backup file and restoring it onto another site. In this case, the selected cohorts do not exist on the target site and their IDs might even point to unrelated cohorts. Thus, the cohort selection is removed from the restored block. If the selection was inverted, the inversion is removed as well, as the block would otherwise be visible for all users. This means that the restored block is not shown to anybody (except the users who are allowed to edit it or who have the block/cohortspecifichtml:viewalways capability) until you configure its cohort selection again. A warning about this is added to the restore log. This way, a restore never silently shows a block to users who were not meant to see it.
+
+### Security considerations
+
+Moodle detects the origin of a course backup based on information within the backup file. Thus, a user who is allowed to restore courses could craft a backup file which configures a block with cohorts which this user is not allowed to select in the block configuration form. This is accepted, as this only lets the user address their own block content to the members of these cohorts and does not disclose anything about the cohorts or their members.
+
+
 Theme support
 -------------
 
