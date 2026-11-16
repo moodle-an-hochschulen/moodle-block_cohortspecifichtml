@@ -4,6 +4,10 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
+### Unreleased
+
+* 2026-11-16 - Bugfix: Pass the context to format_string() as options array instead of as context object in the block configuration form to avoid a developer debugging message, relates to MDL-90621.
+
 ### v5.0-r5
 
 * 2026-10-29 - Improvement: Escape the cohort names in the restriction info which is shown above the block content and do not format the restriction info in the format of the block text anymore.
