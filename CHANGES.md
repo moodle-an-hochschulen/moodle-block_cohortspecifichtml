@@ -4,6 +4,10 @@ moodle-block_cohortspecifichtml
 Changes
 -------
 
+### Unreleased
+
+* 2026-11-16 - Bugfix: Pass the context to format_string() as options array instead of as context object in the block configuration form to avoid a developer debugging message, relates to MDL-90621.
+
 ### v4.5-r4
 
 * 2026-11-08 - Bugfix: Require the block_html version of Moodle 4.5 instead of the plugin's own former version number as dependency in version.php.

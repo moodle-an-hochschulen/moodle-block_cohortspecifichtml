@@ -155,7 +155,7 @@ class block_cohortspecifichtml_edit_form extends block_edit_form {
         if (!$this->block->user_can_edit() && !empty($this->block->config->title)) {
             // If a title has been set but the user cannot edit it format it nicely.
             $title = $this->block->config->title;
-            $defaults->config_title = format_string($title, true, $this->page->context);
+            $defaults->config_title = format_string($title, true, ['context' => $this->page->context]);
             // Remove the title from the config so that parent::set_data doesn't set it.
             unset($this->block->config->title);
         }
